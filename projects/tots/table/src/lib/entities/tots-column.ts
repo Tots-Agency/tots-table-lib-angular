@@ -5,4 +5,7 @@ export class TotsColumn {
     component: any;
     extra?: any;
     is_show?: boolean = true;
+
+    hasOrder?: boolean = false;
+    order?: 'asc'|'desc';
 }

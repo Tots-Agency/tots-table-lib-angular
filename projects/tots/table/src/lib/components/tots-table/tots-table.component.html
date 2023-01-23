@@ -3,7 +3,11 @@
         
         <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key">
             <!-- TH-->
-            <th mat-header-cell *matHeaderCellDef>{{ column.title }}</th>
+            <th mat-header-cell *matHeaderCellDef [ngClass]="{'tots-tr-has-order': column.hasOrder}" (click)="onClickOrder(column)">
+                {{ column.title }}
+                <ng-container *ngIf="column.order == 'asc'"><mat-icon>arrow_drop_up</mat-icon></ng-container>
+                <ng-container *ngIf="column.order == 'desc'"><mat-icon>arrow_drop_down</mat-icon></ng-container>
+            </th>
             <!-- TD -->
             <td mat-cell *matCellDef="let item" [ngStyle]="{'width': column.extra?.width ? column.extra.width : 'auto'}"><tots-base-print-column [column]="column" [item]="item" [onAction]="privateActions"></tots-base-print-column></td>
         </ng-container>

@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
+import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
 
 @Component({
@@ -27,6 +28,12 @@ export class TotsTableComponent implements OnInit {
   ngOnInit(): void {
     this.loadConfig();
     this.loadItems();
+  }
+
+  onClickOrder(column: TotsColumn) {
+    if(!column.hasOrder){ return; }
+    column.order = column.order == 'asc' ? 'desc' : 'asc';
+    this.onAction.emit({ key: 'click-order', item: column });
   }
 
   onClickRow(item: any) {
