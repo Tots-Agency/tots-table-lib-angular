@@ -17,6 +17,7 @@ import { BasePrintColumnComponent } from './columns/base-print-column/base-print
 import { StringColumnComponent } from './columns/string-column/string-column.component';
 import { MoreMenuColumnComponent } from './columns/more-menu-column/more-menu-column.component';
 import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.component';
+import { TwoStringColumnComponent } from './columns/two-string-column/two-string-column.component';
 
 
 
@@ -27,7 +28,8 @@ import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.
     StringColumnComponent,
     TotsTableApiComponent,
     MoreMenuColumnComponent,
-    BooleanColumnComponent
+    BooleanColumnComponent,
+    TwoStringColumnComponent
   ],
   imports: [
     CommonModule,

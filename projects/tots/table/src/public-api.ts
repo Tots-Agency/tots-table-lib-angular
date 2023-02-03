@@ -22,6 +22,7 @@ export * from './lib/columns/tots-base-column.component';
 export * from './lib/columns/string-column/string-column.component';
 export * from './lib/columns/more-menu-column/more-menu-column.component';
 export * from './lib/columns/boolean-column/boolean-column.component';
+export * from './lib/columns/two-string-column/two-string-column.component';
 
 /**
  * Components
