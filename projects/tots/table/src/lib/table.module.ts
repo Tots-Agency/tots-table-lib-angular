@@ -16,6 +16,7 @@ import { TotsTableApiComponent } from './components/tots-table-api/tots-table-ap
 import { BasePrintColumnComponent } from './columns/base-print-column/base-print-column.component';
 import { StringColumnComponent } from './columns/string-column/string-column.component';
 import { MoreMenuColumnComponent } from './columns/more-menu-column/more-menu-column.component';
+import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.component';
 
 
 
@@ -25,7 +26,8 @@ import { MoreMenuColumnComponent } from './columns/more-menu-column/more-menu-co
     BasePrintColumnComponent,
     StringColumnComponent,
     TotsTableApiComponent,
-    MoreMenuColumnComponent
+    MoreMenuColumnComponent,
+    BooleanColumnComponent
   ],
   imports: [
     CommonModule,
