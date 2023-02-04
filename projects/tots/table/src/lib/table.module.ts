@@ -18,6 +18,7 @@ import { StringColumnComponent } from './columns/string-column/string-column.com
 import { MoreMenuColumnComponent } from './columns/more-menu-column/more-menu-column.component';
 import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.component';
 import { TwoStringColumnComponent } from './columns/two-string-column/two-string-column.component';
+import { IconButtonColumnComponent } from './columns/icon-button-column/icon-button-column.component';
 
 
 
@@ -29,7 +30,8 @@ import { TwoStringColumnComponent } from './columns/two-string-column/two-string
     TotsTableApiComponent,
     MoreMenuColumnComponent,
     BooleanColumnComponent,
-    TwoStringColumnComponent
+    TwoStringColumnComponent,
+    IconButtonColumnComponent
   ],
   imports: [
     CommonModule,
