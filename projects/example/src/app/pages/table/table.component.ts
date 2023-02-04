@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
-import { MoreMenuColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from 'projects/tots/table/src/public-api';
+import { BooleanColumnComponent, MoreMenuColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -21,11 +21,11 @@ export class TableComponent implements OnInit {
   onOrder(column: TotsColumn) {
     let response = new TotsListResponse();
     let data = [
-      { title: 'Item 1' },
-      { title: 'Item 2' },
-      { title: 'Item 3' },
-      { title: 'Item 4' },
-      { title: 'Item 5' },
+      { title: 'Item 1', active: 1, subtitle: 'AB232' },
+      { title: 'Item 2', active: 1, subtitle: 'AB232' },
+      { title: 'Item 3', active: 0, subtitle: 'AB232' },
+      { title: 'Item 4', active: 1, subtitle: 'AB232' },
+      { title: 'Item 5', active: 1, subtitle: 'AB232' },
     ];
 
     if(column.order == 'asc'){
@@ -49,6 +49,8 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
     this.config.columns = [
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true },
+      { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
+      { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },
@@ -57,11 +59,11 @@ export class TableComponent implements OnInit {
 
     let data = new TotsListResponse();
     data.data = [
-      { title: 'Item 1' },
-      { title: 'Item 2' },
-      { title: 'Item 3' },
-      { title: 'Item 4' },
-      { title: 'Item 5' },
+      { title: 'Item 1', active: 1, subtitle: 'AB232' },
+      { title: 'Item 2', active: 1, subtitle: 'AB232' },
+      { title: 'Item 3', active: 0, subtitle: 'AB232' },
+      { title: 'Item 4', active: 0, subtitle: 'AB232' },
+      { title: 'Item 5', active: 1, subtitle: 'AB232' },
     ]
 
     this.config.obs = of(data);
