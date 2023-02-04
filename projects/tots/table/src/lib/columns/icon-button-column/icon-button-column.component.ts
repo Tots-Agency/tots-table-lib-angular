@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TotsBaseColumnComponent } from '@tots/table';
 import { TotsTableHelper } from '../../helpers/tots-table-helper';
+import { TotsBaseColumnComponent } from '../tots-base-column.component';
 
 @Component({
   selector: 'tots-icon-button-column',
