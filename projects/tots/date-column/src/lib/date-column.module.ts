@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 /** Columns */
@@ -10,6 +11,7 @@ import { DateColumnComponent } from './columns/date-column/date-column.component
     DateColumnComponent
   ],
   imports: [
+    CommonModule,
   ],
   exports: [
     /** Columns */
