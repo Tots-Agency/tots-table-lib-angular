@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'tots-date-column',
