@@ -1,0 +1,12 @@
+{
+  "name": "@tots/date-column",
+  "version": "15.0.2",
+  "peerDependencies": {
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "moment": "^2.29.4"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './pages/table/table.component';
 import { TotsTableModule } from 'projects/tots/table/src/public-api';
+import { TotsDateColumnModule } from 'projects/tots/date-column/src/public-api';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TotsTableModule } from 'projects/tots/table/src/public-api';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TotsTableModule
+    TotsTableModule,
+    TotsDateColumnModule
   ],
   providers: [],
   bootstrap: [AppComponent]

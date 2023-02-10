@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@tots/date-column": [
+        "dist/tots/date-column"
+      ],
       "@tots/table": [
         "dist/tots/table"
       ]
