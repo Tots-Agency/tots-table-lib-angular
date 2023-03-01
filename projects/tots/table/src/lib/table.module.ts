@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 /** Components */
 import { TotsTableComponent } from './components/tots-table/tots-table.component';
@@ -19,6 +20,7 @@ import { MoreMenuColumnComponent } from './columns/more-menu-column/more-menu-co
 import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.component';
 import { TwoStringColumnComponent } from './columns/two-string-column/two-string-column.component';
 import { IconButtonColumnComponent } from './columns/icon-button-column/icon-button-column.component';
+import { CheckboxColumnComponent } from './columns/checkbox-column/checkbox-column.component';
 
 
 
@@ -31,7 +33,8 @@ import { IconButtonColumnComponent } from './columns/icon-button-column/icon-but
     MoreMenuColumnComponent,
     BooleanColumnComponent,
     TwoStringColumnComponent,
-    IconButtonColumnComponent
+    IconButtonColumnComponent,
+    CheckboxColumnComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { IconButtonColumnComponent } from './columns/icon-button-column/icon-but
     MatPaginatorModule,
     MatButtonModule,
     MatMenuModule,
+    MatCheckboxModule
   ],
   exports: [
     TotsTableComponent,

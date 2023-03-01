@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
-import { BooleanColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -49,6 +49,7 @@ export class TableComponent implements OnInit {
   loadConfig() {
     this.config.id = 'table-example';
     this.config.columns = [
+      { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true },
       { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
       { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
