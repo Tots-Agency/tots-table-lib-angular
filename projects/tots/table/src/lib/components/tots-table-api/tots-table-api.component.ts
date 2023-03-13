@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { TotsListResponse } from '@tots/core';
 import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsTableApiConfig } from '../../entities/tots-table-api-config';
 import { TotsTableConfig } from '../../entities/tots-table-config';
@@ -41,5 +42,9 @@ export class TotsTableApiComponent implements OnInit {
 
   loadItems() {
     this.tableComp.loadItems();
+  }
+
+  getDataItems(): TotsListResponse<any> | undefined {
+    return this.tableComp.getDataItems();
   }
 }

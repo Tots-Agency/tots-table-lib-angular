@@ -47,9 +47,9 @@ export class TotsTableComponent implements OnInit {
 
   loadItems() {
     this.isLoading = true;
-    this.config.obs?.
-    pipe(tap(res => this.dataItems = res)).
-    subscribe(res => this.isLoading = false);
+    this.config.obs?.pipe(tap(res => this.dataItems = res))
+    .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))
+    .subscribe(res => this.isLoading = false);
   }
 
   loadConfig() {
@@ -62,5 +62,9 @@ export class TotsTableComponent implements OnInit {
 
   loadColumns() {
     this.displayColumns = this.config.columns.filter(c => c.is_show || c.is_show == undefined).map(c => c.key);
+  }
+
+  getDataItems(): TotsListResponse<any> | undefined {
+    return this.dataItems;
   }
 }
