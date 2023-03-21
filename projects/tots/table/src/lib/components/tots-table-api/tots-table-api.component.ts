@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
+import { Observable } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsTableApiConfig } from '../../entities/tots-table-api-config';
 import { TotsTableConfig } from '../../entities/tots-table-config';
@@ -29,6 +30,7 @@ export class TotsTableApiComponent implements OnInit {
     if(action.key == 'page-change'){
       this.config.query.per_page = action.item.pageSize;
       this.config.query.page = action.item.pageIndex;
+      this.configTable.obs = this.config.service.list(this.config.query);
     }
 
     this.onAction.emit(action);
@@ -46,5 +48,9 @@ export class TotsTableApiComponent implements OnInit {
 
   getDataItems(): TotsListResponse<any> | undefined {
     return this.tableComp.getDataItems();
+  }
+
+  setObs(obs: Observable<TotsListResponse<any>>) {
+    this.configTable.obs = obs;
   }
 }
