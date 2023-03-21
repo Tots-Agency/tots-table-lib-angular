@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
-import { BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -54,6 +54,14 @@ export class TableComponent implements OnInit {
       { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
       { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
       { key: 'home', component: IconButtonColumnComponent, title: 'asd', field_key: 'active', hasOrder: false, extra: { icon: 'home', action: 'click-home' } },
+      { key: 'active', component: OptionColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false, extra: {
+        field_rel_key: 'id',
+        field_print_key: 'name',
+        options: [
+          { id: 1, name: 'Activo A' },
+          { id: 0, name: 'Inactivo B' },
+        ]
+      } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },

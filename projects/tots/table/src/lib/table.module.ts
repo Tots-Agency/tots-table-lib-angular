@@ -21,6 +21,7 @@ import { BooleanColumnComponent } from './columns/boolean-column/boolean-column.
 import { TwoStringColumnComponent } from './columns/two-string-column/two-string-column.component';
 import { IconButtonColumnComponent } from './columns/icon-button-column/icon-button-column.component';
 import { CheckboxColumnComponent } from './columns/checkbox-column/checkbox-column.component';
+import { OptionColumnComponent } from './columns/option-column/option-column.component';
 
 
 
@@ -34,7 +35,8 @@ import { CheckboxColumnComponent } from './columns/checkbox-column/checkbox-colu
     BooleanColumnComponent,
     TwoStringColumnComponent,
     IconButtonColumnComponent,
-    CheckboxColumnComponent
+    CheckboxColumnComponent,
+    OptionColumnComponent
   ],
   imports: [
     CommonModule,
