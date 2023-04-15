@@ -15,24 +15,25 @@ export class TableComponent implements OnInit {
 
   config = new TotsTableConfig();
 
+  items = [
+    { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+  ];
+
   ngOnInit(): void {
     this.loadConfig();
   }
 
   onOrder(column: TotsColumn) {
     let response = new TotsListResponse();
-    let data = [
-      { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 4', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    ];
 
     if(column.order == 'asc'){
-      response.data = data.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+      response.data = this.items.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
     } else {
-      response.data = data.sort((a,b) => (a.title < b.title) ? 1 : ((b.title < a.title) ? -1 : 0))
+      response.data = this.items.sort((a,b) => (a.title < b.title) ? 1 : ((b.title < a.title) ? -1 : 0))
     }
 
     this.config.obs = of(response);
@@ -43,6 +44,10 @@ export class TableComponent implements OnInit {
     console.log(action);
     if(action.key == 'click-order'){
       this.onOrder(action.item);
+    }else if (action.key == 'select-item') {
+      action.item.isSelected = true;
+    }else if (action.key == 'unselect-item') {
+      action.item.isSelected = false;
     }
   }
 
@@ -70,13 +75,7 @@ export class TableComponent implements OnInit {
     ];
 
     let data = new TotsListResponse();
-    data.data = [
-      { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-      { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    ]
+    data.data = this.items;
 
     this.config.obs = of(data);
   }
