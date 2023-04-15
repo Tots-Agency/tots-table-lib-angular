@@ -23,6 +23,7 @@ import { IconButtonColumnComponent } from './columns/icon-button-column/icon-but
 import { CheckboxColumnComponent } from './columns/checkbox-column/checkbox-column.component';
 import { OptionColumnComponent } from './columns/option-column/option-column.component';
 import { UserColumnComponent } from './columns/user-column/user-column.component';
+import { CurrencyColumnComponent } from './columns/currency-column/currency-column.component';
 
 
 
@@ -38,7 +39,8 @@ import { UserColumnComponent } from './columns/user-column/user-column.component
     IconButtonColumnComponent,
     CheckboxColumnComponent,
     OptionColumnComponent,
-    UserColumnComponent
+    UserColumnComponent,
+    CurrencyColumnComponent
   ],
   imports: [
     CommonModule,

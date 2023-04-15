@@ -27,6 +27,7 @@ export * from './lib/columns/icon-button-column/icon-button-column.component';
 export * from './lib/columns/checkbox-column/checkbox-column.component';
 export * from './lib/columns/option-column/option-column.component';
 export * from './lib/columns/user-column/user-column.component';
+export * from './lib/columns/currency-column/currency-column.component';
 
 /**
  * Components
