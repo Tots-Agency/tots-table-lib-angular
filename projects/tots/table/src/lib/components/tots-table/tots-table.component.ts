@@ -67,4 +67,8 @@ export class TotsTableComponent implements OnInit {
   getDataItems(): TotsListResponse<any> | undefined {
     return this.dataItems;
   }
+
+  refreshDataItems(newData: TotsListResponse<any> | undefined) {
+    this.dataItems = newData;
+  }
 }
