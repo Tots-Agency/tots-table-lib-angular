@@ -19,7 +19,7 @@ export class TableComponent implements OnInit {
     { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
 
