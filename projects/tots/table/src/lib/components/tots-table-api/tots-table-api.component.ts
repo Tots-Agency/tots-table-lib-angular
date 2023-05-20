@@ -42,6 +42,11 @@ export class TotsTableApiComponent implements OnInit {
     this.configTable.obs = this.config.service.list(this.config.query);
   }
 
+  refreshQueryAndLoadItems() {
+    this.configTable.obs = this.config.service.list(this.config.query);
+    this.loadItems();
+  }
+
   loadItems() {
     this.tableComp.loadItems();
   }
