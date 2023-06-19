@@ -24,6 +24,7 @@ import { CheckboxColumnComponent } from './columns/checkbox-column/checkbox-colu
 import { OptionColumnComponent } from './columns/option-column/option-column.component';
 import { UserColumnComponent } from './columns/user-column/user-column.component';
 import { CurrencyColumnComponent } from './columns/currency-column/currency-column.component';
+import { StatusColumnComponent } from './columns/status-column/status-column.component';
 
 
 
@@ -40,7 +41,8 @@ import { CurrencyColumnComponent } from './columns/currency-column/currency-colu
     CheckboxColumnComponent,
     OptionColumnComponent,
     UserColumnComponent,
-    CurrencyColumnComponent
+    CurrencyColumnComponent,
+    StatusColumnComponent
   ],
   imports: [
     CommonModule,
