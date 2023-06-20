@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 /** Components */
 import { TotsTableComponent } from './components/tots-table/tots-table.component';
@@ -52,7 +53,8 @@ import { StatusColumnComponent } from './columns/status-column/status-column.com
     MatPaginatorModule,
     MatButtonModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     TotsTableComponent,

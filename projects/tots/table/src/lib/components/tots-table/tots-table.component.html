@@ -1,5 +1,5 @@
 <div class="tots-table-container">
-    <table *ngIf="dataItems" mat-table [dataSource]="dataItems!.data">
+    <table mat-table [dataSource]="dataItems != undefined ? dataItems!.data : []">
         
         <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key">
             <!-- TH-->
@@ -18,6 +18,8 @@
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow><td class="mat-cell" colspan="100">No data matching</td></tr>
     </table>
+
+    <div *ngIf="isLoading" class="tots-table-loading"><mat-spinner [diameter]="50"></mat-spinner></div>
 
     <!-- Paginator -->
     <mat-paginator *ngIf="dataItems && hasPagination" [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="onPageChange($event)"></mat-paginator>
