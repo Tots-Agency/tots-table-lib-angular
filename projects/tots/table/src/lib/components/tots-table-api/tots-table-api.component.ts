@@ -44,11 +44,11 @@ export class TotsTableApiComponent implements OnInit {
 
   refreshQueryAndLoadItems() {
     this.configTable.obs = this.config.service.list(this.config.query);
-    this.loadItems();
+    return this.loadItems();
   }
 
   loadItems() {
-    this.tableComp.loadItems();
+    return this.tableComp.loadItems();
   }
 
   getDataItems(): TotsListResponse<any> | undefined {
