@@ -10,14 +10,14 @@ import { TotsTableHelper } from '../../helpers/tots-table-helper';
 export class BalanceCurrencyIconColumnComponent extends BalanceCurrencyColumnComponent {
 
   getIconPositive(): any {
-    return TotsTableHelper.getItemValueByKey(this.item, this.column.extra.icon_positive);
+    return this.column.extra.icon_positive
   }
 
   getIconNegative(): any {
-    return TotsTableHelper.getItemValueByKey(this.item, this.column.extra.icon_negative);
+    return this.column.extra.icon_negative;
   }
 
   getIconNeutral(): any {
-    return TotsTableHelper.getItemValueByKey(this.item, this.column.extra.icon_neutral);
+    return this.column.extra.icon_neutral;
   }
 }
