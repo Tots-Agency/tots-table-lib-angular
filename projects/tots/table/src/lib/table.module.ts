@@ -26,6 +26,7 @@ import { OptionColumnComponent } from './columns/option-column/option-column.com
 import { UserColumnComponent } from './columns/user-column/user-column.component';
 import { CurrencyColumnComponent } from './columns/currency-column/currency-column.component';
 import { StatusColumnComponent } from './columns/status-column/status-column.component';
+import { BalanceCurrencyColumnComponent } from './columns/balance-currency-column/balance-currency-column.component';
 
 
 
@@ -43,7 +44,8 @@ import { StatusColumnComponent } from './columns/status-column/status-column.com
     OptionColumnComponent,
     UserColumnComponent,
     CurrencyColumnComponent,
-    StatusColumnComponent
+    StatusColumnComponent,
+    BalanceCurrencyColumnComponent
   ],
   imports: [
     CommonModule,

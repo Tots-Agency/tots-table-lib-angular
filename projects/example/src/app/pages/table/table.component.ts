@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
-import { BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -16,8 +16,8 @@ export class TableComponent implements OnInit {
   config = new TotsTableConfig();
 
   items = [
-    { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
+    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000 },
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
@@ -59,6 +59,7 @@ export class TableComponent implements OnInit {
       { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
       { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
       { key: 'home', component: IconButtonColumnComponent, title: 'asd', field_key: 'active', hasOrder: false, extra: { icon: 'home', action: 'click-home' } },
+      { key: 'balance', component: BalanceCurrencyColumnComponent, title: 'Balance', hasOrder: false, extra: { field_key_debit: 'debit', field_key_credit: 'credit' } },
       { key: 'active', component: OptionColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false, extra: {
         field_rel_key: 'id',
         field_print_key: 'name',
