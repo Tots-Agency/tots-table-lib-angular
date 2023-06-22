@@ -27,6 +27,7 @@ import { UserColumnComponent } from './columns/user-column/user-column.component
 import { CurrencyColumnComponent } from './columns/currency-column/currency-column.component';
 import { StatusColumnComponent } from './columns/status-column/status-column.component';
 import { BalanceCurrencyColumnComponent } from './columns/balance-currency-column/balance-currency-column.component';
+import { StatusIconColumnComponent } from './columns/status-icon-column/status-icon-column.component';
 
 
 
@@ -45,7 +46,8 @@ import { BalanceCurrencyColumnComponent } from './columns/balance-currency-colum
     UserColumnComponent,
     CurrencyColumnComponent,
     StatusColumnComponent,
-    BalanceCurrencyColumnComponent
+    BalanceCurrencyColumnComponent,
+    StatusIconColumnComponent
   ],
   imports: [
     CommonModule,
