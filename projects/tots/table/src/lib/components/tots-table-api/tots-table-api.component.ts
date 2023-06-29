@@ -17,6 +17,7 @@ export class TotsTableApiComponent implements OnInit {
 
   @Input() config = new TotsTableApiConfig();
   @Input() hasPagination: boolean = true;
+  @Input() isPaginationStartIndexInZero: boolean = false;
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
 
@@ -29,7 +30,11 @@ export class TotsTableApiComponent implements OnInit {
   onTableAction(action: TotsActionTable) {
     if(action.key == 'page-change'){
       this.config.query.per_page = action.item.pageSize;
-      this.config.query.page = action.item.pageIndex;
+      if(this.isPaginationStartIndexInZero){
+        this.config.query.page = action.item.pageIndex;
+      } else {
+        this.config.query.page = action.item.pageIndex + 1;
+      }
       this.configTable.obs = this.config.service.list(this.config.query);
     }
 
