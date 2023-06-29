@@ -32,7 +32,9 @@ export class TotsTableComponent implements OnInit {
 
   onClickOrder(column: TotsColumn) {
     if(!column.hasOrder){ return; }
-    column.order = column.order == 'asc' ? 'desc' : 'asc';
+    let orderColumn = column.order;
+    this.config.columns.forEach(c => c.order = undefined);
+    column.order = orderColumn == 'asc' ? 'desc' : 'asc';
     this.onAction.emit({ key: 'click-order', item: column });
   }
 
@@ -46,6 +48,7 @@ export class TotsTableComponent implements OnInit {
   }
 
   loadItems() {
+    this.dataItems = undefined;
     this.isLoading = true;
     return this.config.obs?.pipe(tap(res => this.dataItems = res))
     .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))

@@ -5,6 +5,7 @@
             <!-- TH-->
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'tots-tr-has-order': column.hasOrder}" (click)="onClickOrder(column)">
                 {{ column.title }}
+                <ng-container *ngIf="column.hasOrder && column.order == undefined"><mat-icon style="color: gray">unfold_more</mat-icon></ng-container>
                 <ng-container *ngIf="column.order == 'asc'"><mat-icon>arrow_drop_up</mat-icon></ng-container>
                 <ng-container *ngIf="column.order == 'desc'"><mat-icon>arrow_drop_down</mat-icon></ng-container>
             </th>
