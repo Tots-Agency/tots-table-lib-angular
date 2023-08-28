@@ -1,4 +1,4 @@
-<div class="tots-table-container">
+<div class="tots-table-container {{config.classes}}">
     <table mat-table [dataSource]="dataItems != undefined ? dataItems!.data : []">
         
         <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key">

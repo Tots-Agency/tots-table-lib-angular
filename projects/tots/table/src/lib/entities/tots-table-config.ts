@@ -6,4 +6,5 @@ export class TotsTableConfig {
     id?: string = '';
     columns: Array<TotsColumn> = [];
     obs?: Observable<TotsListResponse<any>>;
+    classes?: string = '';
 }

@@ -6,4 +6,5 @@ export class TotsTableApiConfig {
     columns: Array<TotsColumn> = [];
     service!: TotsBaseHttpService<any>;
     query: TotsQuery = new TotsQuery();
+    classes?: string = '';
 }
