@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TotsTableHelper } from '../../helpers/tots-table-helper';
 import { TotsBaseColumnComponent } from '../tots-base-column.component';
 
 @Component({
@@ -15,7 +14,15 @@ export class IconButtonColumnComponent extends TotsBaseColumnComponent {
     return false;
   }
 
-  getIconName(): any {
+  getIconName() : string {
     return this.column.extra.icon;
+  }
+
+  getButtonColor() : string {
+    return this.column.extra.matColor;
+  }
+
+  getClasses() : string {
+    return this.column.extra.classes;
   }
 }
