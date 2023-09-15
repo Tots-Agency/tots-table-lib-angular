@@ -1,6 +1,6 @@
 {
   "name": "@tots/table",
-  "version": "15.0.37",
+  "version": "15.0.38",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0",
