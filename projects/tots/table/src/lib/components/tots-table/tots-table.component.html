@@ -1,7 +1,7 @@
 <div class="tots-table-container {{config.classes}}">
     <table mat-table [dataSource]="dataItems != undefined ? dataItems!.data : []">
 
-        <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key">
+        <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key" [stickyEnd]="column.extra?.stickyEnd ?? false">
             <!-- TH-->
             <th mat-header-cell *matHeaderCellDef [ngClass]="{'tots-tr-has-order': column.hasOrder}" (click)="onClickOrder(column)">
                 {{ column.title }}
