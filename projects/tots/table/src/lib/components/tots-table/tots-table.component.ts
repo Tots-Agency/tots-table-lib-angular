@@ -17,6 +17,7 @@ export class TotsTableComponent implements OnInit {
   @Input() pageIndex: number = 0;
   @Input() pageSize: number = 50;
   @Input() hasPagination: boolean = true;
+  @Input() messageNotFound: string = "No results found, please try with other search terms";
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
   privateActions = new Subject<TotsActionTable>();

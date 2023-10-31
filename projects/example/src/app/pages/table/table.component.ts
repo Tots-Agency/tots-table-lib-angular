@@ -16,7 +16,7 @@ export class TableComponent implements OnInit {
   config = new TotsTableConfig();
 
   items = [
-    { title: 'Item 1', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
+    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
     { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000 },
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
@@ -55,7 +55,7 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
-      { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true },
+      { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',' } },
       { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
       { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
       { key: 'home', component: IconButtonColumnComponent, title: 'asd', field_key: 'active', hasOrder: false, extra: { icon: 'home', action: 'click-home' } },
@@ -77,7 +77,7 @@ export class TableComponent implements OnInit {
         ]
       } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
-      { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { width: '60px', actions: [
+      { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { stickyEnd: true, width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },
       ]} },
