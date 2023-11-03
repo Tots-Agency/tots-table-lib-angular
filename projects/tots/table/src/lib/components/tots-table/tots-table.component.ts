@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
@@ -25,6 +25,10 @@ export class TotsTableComponent implements OnInit {
   isLoading = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
+
+  constructor(
+    protected changeDectetor: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadConfig();
@@ -74,5 +78,9 @@ export class TotsTableComponent implements OnInit {
 
   refreshDataItems(newData: TotsListResponse<any> | undefined) {
     this.dataItems = newData;
+  }
+
+  detectChanges() {
+    this.changeDectetor.detectChanges();
   }
 }
