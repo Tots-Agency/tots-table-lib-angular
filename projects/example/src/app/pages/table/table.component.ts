@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
+import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
@@ -77,6 +78,7 @@ export class TableComponent implements OnInit {
         ]
       } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
+      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { cutSeparator: ',' } },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { stickyEnd: true, width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },
