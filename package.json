@@ -7,6 +7,7 @@
     "build": "ng build",
     "build2": "ng build --project=@tots/table --configuration production && cd dist/tots/table/ && npm publish --access public",
     "build3": "ng build --project=@tots/date-column --configuration production && cd dist/tots/date-column/ && npm publish --access public",
+    "build4": "ng build --project=@tots/editable-columns --configuration production && cd dist/tots/editable-columns/ && npm publish --access public",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

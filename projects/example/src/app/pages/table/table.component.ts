@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
@@ -18,11 +19,13 @@ export class TableComponent implements OnInit {
 
   items = [
     { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
-    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000 },
+    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
+
+  formGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.loadConfig();
@@ -78,7 +81,7 @@ export class TableComponent implements OnInit {
         ]
       } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
-      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { cutSeparator: ',' } },
+      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required], group: this.formGroup } },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { stickyEnd: true, width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },

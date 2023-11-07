@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TotsBaseColumnComponent } from '@tots/table';
+import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
+import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
 
 @Component({
   selector: 'tots-input-column',
@@ -9,13 +10,14 @@ import { TotsBaseColumnComponent } from '@tots/table';
 })
 export class InputColumn extends TotsBaseColumnComponent {
 
-  input = new FormControl();
+  input!: FormControl;
 
   constructor() {
     super();
   }
 
   ngOnInit(): void {
+    this.loadInput();
     this.loadForm();
     this.loadChanges();
   }
@@ -23,7 +25,7 @@ export class InputColumn extends TotsBaseColumnComponent {
   loadChanges() {
     this.input.valueChanges
     .subscribe(res => {
-      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res } });
+      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid } });
     });
   }
 
@@ -40,11 +42,80 @@ export class InputColumn extends TotsBaseColumnComponent {
     group.addControl(this.getFormKey(), this.input);
   }
 
+  loadInput() {
+    let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
+    this.input = new FormControl(value, this.getValidators());
+  }
+
   getFormKey(): string {
     if(Array.isArray(this.column.field_key)){
       return this.column.field_key.join('_');
     } else {
       return this.column.field_key!;
     }
+  }
+
+  getValidators() : ValidatorFn[] | ValidatorFn | null {
+    if (this.column.extra && this.column.extra.validators) {
+      return this.column.extra.validators;
+    }
+    return null;
+  }
+
+  getErrorMessage() : string {
+    if (!this.column.extra.errors) {
+      return '';
+    }
+
+    for (const error of this.column.extra.errors) {
+      if (this.input.hasError(error.name)) {
+        return error.message;
+      }
+    }
+
+    return '';
+  }
+
+  getAppearance() : MatFormFieldAppearance {
+    if (this.column.extra && this.column.extra.appearance) {
+      return this.column.extra.appearance;
+    }
+    return 'fill';
+  }
+
+  getLabel() : string | undefined {
+    if (this.column.extra && this.column.extra.label) {
+      return this.column.extra.label;
+    }
+    return undefined;
+  }
+
+  getClasses() : string {
+    if (this.column.extra && this.column.extra.classes) {
+      return this.column.extra.classes;
+    }
+    return '';
+  }
+
+  getPlaceholder() : string {
+    if (this.column.extra && this.column.extra.placeholder) {
+      return this.column.extra.placeholder;
+    }
+    return '';
+  }
+
+  getCaption() : string {
+    if (this.column.extra && this.column.extra.caption) {
+      return this.column.extra.caption;
+    }
+    return '';
+  }
+
+  hasError() : boolean {
+    return this.input.invalid && (this.input.dirty || this.input.touched);
+  }
+
+  getInput() {
+    return this.input;
   }
 }
