@@ -1,4 +1,4 @@
-<mat-form-field class="{{getClasses()}}" [appearance]="getAppearance()" (click)="$event.stopPropagation()">
+<mat-form-field class="{{getClasses()}}" [appearance]="getAppearance()" (click)="$event.stopPropagation()" *ngIf="this.input">
   <mat-label *ngIf="getLabel()"> {{ getLabel() }} </mat-label>
   <input matInput type="text" [formControl]="input" [placeholder]="getPlaceholder()"/>
   <mat-hint *ngIf="getCaption()" [align]="'end'"> {{getCaption()}} </mat-hint>

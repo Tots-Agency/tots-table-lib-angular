@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   items = [
     { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500, edit_field: "0" },
     { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: "5" },
-    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01', edit_field: "10" },
+    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "-5" },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "-10" },
   ];
@@ -46,11 +46,11 @@ export class TableComponent implements OnInit {
 
   onTableAction(action: TotsActionTable) {
     console.log(action);
-    if (action.key == 'click-order'){
+    if(action.key == 'click-order'){
       this.onOrder(action.item);
-    } else if (action.key == 'select-item') {
+    }else if (action.key == 'select-item'){
       action.item.isSelected = true;
-    } else if (action.key == 'unselect-item') {
+    }else if (action.key == 'unselect-item'){
       action.item.isSelected = false;
     }
   }

@@ -8,6 +8,7 @@ import { TableComponent } from './pages/table/table.component';
 import { TotsTableModule } from 'projects/tots/table/src/public-api';
 import { TotsDateColumnModule } from 'projects/tots/date-column/src/public-api';
 import { TotsEditableColumnsModule } from 'projects/tots/editable-columns/src/public-api';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TotsEditableColumnsModule } from 'projects/tots/editable-columns/src/pu
     BrowserAnimationsModule,
     TotsTableModule,
     TotsDateColumnModule,
-    TotsEditableColumnsModule
+    TotsEditableColumnsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,3 +4,22 @@
   padding: 4em;
   background-color: white;
 }
+
+.input_column_state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  p {
+    width: fit-content;
+    margin: 0;
+  }
+  .invalid {
+    color: #f44336;
+    font-weight: 600;
+  }
+  .valid {
+    color: #3f51b5;
+    font-weight: 600;
+  }
+}

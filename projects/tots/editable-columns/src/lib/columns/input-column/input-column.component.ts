@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
@@ -17,16 +17,9 @@ export class InputColumn extends TotsBaseColumnComponent {
   }
 
   ngOnInit(): void {
-    this.loadInput();
-    this.loadForm();
-    this.loadChanges();
-  }
-
-  loadChanges() {
-    this.input.valueChanges
-    .subscribe(res => {
-      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid } });
-    });
+    setTimeout(() => {
+      this.loadForm();
+    }, 0);
   }
 
   loadForm() {
@@ -41,12 +34,14 @@ export class InputColumn extends TotsBaseColumnComponent {
     
     let formArray = this.column.extra.group.get(this.getFormKey());
     let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
-    formArray.push(new FormControl(value, this.getValidators()));
-  }
-
-  loadInput() {
-    let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
+    
     this.input = new FormControl(value, this.getValidators());
+    this.input.valueChanges.subscribe(res => {
+      setTimeout(() => {  // Set timeout hace que se emita después de actualizar el form array para que se reciba bien desde afuera
+        this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid } });
+      }, 0);
+    });
+    formArray.push(this.input);
   }
 
   getFormKey(): string {

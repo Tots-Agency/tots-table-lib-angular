@@ -1,4 +1,11 @@
 <div class="container">
   <tots-table #tableComp [config]="config" (onAction)="onTableAction($event)"></tots-table>
 
+  <div class="input_column_state">
+    <mat-icon [color]="formGroup.valid ? 'primary' : 'warn'">{{formGroup.valid ? "check" : "clear"}}</mat-icon>
+    <p>
+      Form group es
+      <span [class]="formGroup.valid ? 'valid' : 'invalid'">{{formGroup.valid ? "válido" : "inválido"}}</span>
+    </p>
+  </div>
 </div>
