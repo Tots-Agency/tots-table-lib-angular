@@ -18,11 +18,11 @@ export class TableComponent implements OnInit {
   config = new TotsTableConfig();
 
   items = [
-    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
-    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
-    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
-    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500, edit_field: "0" },
+    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: "5" },
+    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01', edit_field: "10" },
+    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "-5" },
+    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "-10" },
   ];
 
   formGroup = new FormGroup({});
@@ -46,12 +46,15 @@ export class TableComponent implements OnInit {
 
   onTableAction(action: TotsActionTable) {
     console.log(action);
-    if(action.key == 'click-order'){
+    if (action.key == 'click-order'){
       this.onOrder(action.item);
-    }else if (action.key == 'select-item') {
+    } else if (action.key == 'select-item') {
       action.item.isSelected = true;
-    }else if (action.key == 'unselect-item') {
+    } else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
+    } else if (action.key == "input-change") {
+      // Este form group no tiene los valores de todas 
+      console.warn(this.formGroup.value);
     }
   }
 
@@ -81,7 +84,7 @@ export class TableComponent implements OnInit {
         ]
       } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
-      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required], group: this.formGroup } },
+      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required, Validators.max(7), Validators.min(-7)], errors:[{name:"required", message:"Requerido"}, {name:"min", message:"Mínimo -7"}, {name:"max", message:"Máximo 7"}], group: this.formGroup } },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { stickyEnd: true, width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },
