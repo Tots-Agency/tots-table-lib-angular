@@ -13,6 +13,7 @@ export class BasePrintColumnComponent {
   @Input() column!: TotsColumn;
   @Input() item: any;
   @Input() onAction!: Subject<TotsActionTable>;
+  @Input() index?: number;
 
   constructor(
     protected viewContainerRef: ViewContainerRef
@@ -23,5 +24,6 @@ export class BasePrintColumnComponent {
     (<any>view.instance).column = this.column;
     (<any>view.instance).item = this.item;
     (<any>view.instance).onAction = this.onAction;
+    (<any>view.instance).index = this.index;
   }
 }
