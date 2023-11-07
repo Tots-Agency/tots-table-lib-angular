@@ -6,8 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+/** Tots Libraries */
+import { TotsTableModule } from '@tots/table';
+
 /** Columns */
 import { InputColumn } from './columns/input-column/input-column.component';
+
+/** Components */
+import { TotsTableFullGroupComponent } from './components/tots-table-full-group/tots-table-full-group.component';
+
+
 
 
 
@@ -17,7 +25,10 @@ import { InputColumn } from './columns/input-column/input-column.component';
   declarations: [
 
     /** Columns */
-    InputColumn
+    InputColumn,
+
+    /** Components */
+    TotsTableFullGroupComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +38,16 @@ import { InputColumn } from './columns/input-column/input-column.component';
     /** Angular Material */
     MatFormFieldModule,
     MatInputModule,
+
+    /** Tots Libraries */
+    TotsTableModule
   ],
   exports: [
     /** Columns */
-    InputColumn
+    InputColumn,
+
+    /** Components */
+    TotsTableFullGroupComponent
   ]
 })
 export class TotsEditableColumnsModule { }

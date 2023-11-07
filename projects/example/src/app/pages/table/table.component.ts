@@ -81,7 +81,7 @@ export class TableComponent implements OnInit {
         ]
       } },
       { key: 'date', component: DateColumnComponent, title: 'Date', field_key: 'date', hasOrder: false, extra: { format_in: 'YYYY-MM-DD', format_out: 'MM/DD/YYYY' } },
-      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required], group: this.formGroup } },
+      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required] } },
       { key: 'more', component: MoreMenuColumnComponent, title: '', extra: { stickyEnd: true, width: '60px', actions: [
         { icon: 'add', title: 'Editar', key: 'edit' },
         { icon: 'add', title: 'Eliminar', key: 'remove' },
@@ -91,6 +91,6 @@ export class TableComponent implements OnInit {
     let data = new TotsListResponse();
     data.data = this.items;
 
-    this.config.obs = of(data);
+    this.config.obs = of(data).pipe(delay(1000));
   }
 }
