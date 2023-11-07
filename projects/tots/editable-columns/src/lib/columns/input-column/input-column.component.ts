@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
 
@@ -34,12 +34,14 @@ export class InputColumn extends TotsBaseColumnComponent {
       return;
     }
 
-    let group: FormGroup = this.column.extra.group;
-    if(group.get(this.getFormKey()) != undefined){
-        return;
+    if (this.column.extra.group.get(this.getFormKey()) == undefined) {
+      let formArray = new FormArray<any>([]);
+      this.column.extra.group.addControl(this.getFormKey(), formArray);
     }
-
-    group.addControl(this.getFormKey(), this.input);
+    
+    let formArray = this.column.extra.group.get(this.getFormKey());
+    let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
+    formArray.push(new FormControl(value, this.getValidators()));
   }
 
   loadInput() {

@@ -52,9 +52,6 @@ export class TableComponent implements OnInit {
       action.item.isSelected = true;
     } else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
-    } else if (action.key == "input-change") {
-      // Este form group no tiene los valores de todas 
-      console.warn(this.formGroup.value);
     }
   }
 
