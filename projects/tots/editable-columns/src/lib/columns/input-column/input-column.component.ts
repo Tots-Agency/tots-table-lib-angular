@@ -8,7 +8,7 @@ import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
   templateUrl: './input-column.component.html',
   styleUrls: ['./input-column.component.css']
 })
-export class InputColumn extends TotsBaseColumnComponent {
+export class InputColumnComponent extends TotsBaseColumnComponent {
 
   input!: FormControl;
 
@@ -25,7 +25,7 @@ export class InputColumn extends TotsBaseColumnComponent {
   loadChanges() {
     this.input.valueChanges
     .subscribe(res => {
-      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid, index: this.index } });
+      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid } });
     });
   }
 
@@ -46,7 +46,7 @@ export class InputColumn extends TotsBaseColumnComponent {
     let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
     this.input = new FormControl(value, this.getValidators());
 
-    this.onAction.next({ key: 'input-create', item: { field_key: this.getFormKey(), input: this.input, index: this.index, column: this.column } });
+    this.onAction.next({ key: 'input-create', item: { field_key: this.getFormKey(), input: this.input, column: this.column } });
   }
 
   getFormKey(): string {
