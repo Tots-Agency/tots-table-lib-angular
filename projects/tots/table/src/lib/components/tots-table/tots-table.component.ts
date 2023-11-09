@@ -49,7 +49,6 @@ export class TotsTableComponent implements OnInit {
 
   onPageChange(event: PageEvent) {
     this.onAction.emit({ key: 'page-change', item: event });
-    this.loadItems();
   }
 
   loadItems() {
