@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from '@tots/table';
+import { Subject, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'tots-table-full-group',
   templateUrl: './tots-table-full-group.component.html',
   styleUrls: ['./tots-table-full-group.component.css']
 })
-export class TotsTableFullGroupComponent implements AfterViewInit {
+export class TotsTableFullGroupComponent {
 
   @ViewChild('tableComp') tableComp!: TotsTableComponent;
 
@@ -19,15 +20,27 @@ export class TotsTableFullGroupComponent implements AfterViewInit {
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
 
+  private loadItemsCaught = new Subject<void>();
+  private viewInitCaught = new Subject<void>();
+
   formArrayMain?: FormArray<FormGroup>;
 
-  ngAfterViewInit(): void {
-    this.loadGroup();
+  constructor() {
+    combineLatest([this.loadItemsCaught, this.viewInitCaught]).subscribe((a)=> {
+      this.loadGroup();
+    });
   }
 
   onTableAction(action: TotsActionTable) {
-    if (action.key == 'input-create') {
+    if (action.key == 'loaded-items') {
+      this.loadItemsCaught.next();
+      
+    } else if (action.key == 'table-view-init') {
+      this.viewInitCaught.next();
+
+    } else if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
+
     } else if (action.key == 'input-change') {
       this.onAction.emit(action);
       setTimeout(() => {
