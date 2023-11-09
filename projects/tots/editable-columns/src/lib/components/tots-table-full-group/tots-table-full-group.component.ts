@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from '@tots/table';
 
@@ -7,7 +7,7 @@ import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from
   templateUrl: './tots-table-full-group.component.html',
   styleUrls: ['./tots-table-full-group.component.css']
 })
-export class TotsTableFullGroupComponent {
+export class TotsTableFullGroupComponent implements AfterViewInit {
 
   @ViewChild('tableComp') tableComp!: TotsTableComponent;
 
@@ -21,10 +21,12 @@ export class TotsTableFullGroupComponent {
 
   formArrayMain?: FormArray<FormGroup>;
 
+  ngAfterViewInit(): void {
+    this.loadGroup();
+  }
+
   onTableAction(action: TotsActionTable) {
-    if(action.key == 'loaded-items'){
-      this.loadGroup();
-    } else if (action.key == 'input-create') {
+    if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
     } else if (action.key == 'input-change') {
       this.onAction.emit(action);
