@@ -45,6 +45,9 @@ export class TotsTableFullGroupComponent {
   }
 
   loadGroup() {
+    if(this.tableComp == undefined){
+      return;
+    }
     // Get Items
     let items = this.tableComp.getDataItems();
     // Create main array form
