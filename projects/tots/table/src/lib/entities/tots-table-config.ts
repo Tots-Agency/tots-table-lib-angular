@@ -8,5 +8,5 @@ export class TotsTableConfig {
     columns: Array<TotsColumn> = [];
     obs?: Observable<TotsListResponse<any>>;
     classes?: string = '';
-    intl?: MatPaginatorIntl;
+    paginatorIntl?: MatPaginatorIntl;
 }
