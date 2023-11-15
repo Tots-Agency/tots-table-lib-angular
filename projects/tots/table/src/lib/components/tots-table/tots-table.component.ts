@@ -72,10 +72,10 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
     });
   }
   private loadIntl() {
-    if (this.totsTableDefaultConfig.intl) {
-      this.paginator._intl = this.totsTableDefaultConfig.intl;
-    } else if (this.config.intl) {
+    if (this.config.intl) {
       this.paginator._intl = this.config.intl!;
+    } else if (this.totsTableDefaultConfig.intl) {
+      this.paginator._intl = this.totsTableDefaultConfig.intl;
     }
   }
 
