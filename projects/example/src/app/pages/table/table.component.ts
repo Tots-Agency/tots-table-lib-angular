@@ -54,7 +54,7 @@ export class TableComponent implements OnInit {
 
   loadConfig() {
     this.config.id = 'table-example';
-    //this.config.intl = new CustomPaginatorIntl();
+    //this.config.paginatorIntl = new CustomPaginatorIntl();
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',' } },

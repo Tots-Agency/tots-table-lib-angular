@@ -5,5 +5,5 @@ export const TOTS_TABLE_DEFAULT_CONFIG = new InjectionToken<TotsTableDefaultConf
 
 @Injectable()
 export class TotsTableDefaultConfig {
-  intl? : MatPaginatorIntl;
+  paginatorIntl? : MatPaginatorIntl;
 }
