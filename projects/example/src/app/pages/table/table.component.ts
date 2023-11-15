@@ -3,6 +3,7 @@ import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
+import { CustomPaginatorIntl } from '../../classes/custom-paginator-intl';
 
 @Component({
   selector: 'app-table',
@@ -53,6 +54,7 @@ export class TableComponent implements OnInit {
 
   loadConfig() {
     this.config.id = 'table-example';
+    //this.config.intl = new CustomPaginatorIntl();
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',' } },
@@ -83,9 +85,10 @@ export class TableComponent implements OnInit {
       ]} },
     ];
 
-    let data = new TotsListResponse();
-    data.data = this.items;
+    let tlr = new TotsListResponse();
+    tlr.data = this.items;
+    tlr.total = this.items.length;
 
-    this.config.obs = of(data);
+    this.config.obs = of(tlr);
   }
 }

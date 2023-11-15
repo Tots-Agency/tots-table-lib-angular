@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
+import { MatPaginator } from '@angular/material/paginator';
+import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
 
 @Component({
   selector: 'tots-table',
   templateUrl: './tots-table.component.html',
   styleUrls: ['./tots-table.component.scss']
 })
-export class TotsTableComponent implements OnInit {
+export class TotsTableComponent implements OnInit, AfterViewInit {
 
   @Input() config = new TotsTableConfig();
   @Input() pageIndex: number = 0;
@@ -25,10 +27,17 @@ export class TotsTableComponent implements OnInit {
   isLoading = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
+	@ViewChild("paginator") paginator! : MatPaginator;
+
+  constructor(@Inject(TOTS_TABLE_DEFAULT_CONFIG) protected totsTableDefaultConfig:TotsTableDefaultConfig) {
+  }
 
   ngOnInit(): void {
     this.loadConfig();
     this.loadItems();
+  }
+  ngAfterViewInit(): void {
+    this.loadIntl();
   }
 
   onClickOrder(column: TotsColumn) {
@@ -58,10 +67,16 @@ export class TotsTableComponent implements OnInit {
 
   loadConfig() {
     this.loadColumns();
-
     this.privateActions.subscribe(action => {
       this.onAction.emit(action);
     });
+  }
+  private loadIntl() {
+    if (this.totsTableDefaultConfig.intl) {
+      this.paginator._intl = this.totsTableDefaultConfig.intl;
+    } else if (this.config.intl) {
+      this.paginator._intl = this.config.intl!;
+    }
   }
 
   loadColumns() {
