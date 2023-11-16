@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -71,7 +71,7 @@ import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from './entities/to
     {
       provide: TOTS_TABLE_DEFAULT_CONFIG,
       useClass: TotsTableDefaultConfig
-    }
+    },
   ]
 })
 export class TotsTableModule { }

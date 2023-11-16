@@ -1,4 +1,4 @@
 <div class="container">
-  <tots-table #tableComp [config]="config" (onAction)="onTableAction($event)"></tots-table>
+  <tots-table #tableComp [config]="config" (onAction)="onTableAction($event)" [pageIndex]="totsQuery.page" [pageSize]="totsQuery.per_page"></tots-table>
 
 </div>

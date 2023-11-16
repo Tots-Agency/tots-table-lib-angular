@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TotsListResponse } from '@tots/core';
+import { TotsListResponse, TotsQuery } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 import { CustomPaginatorIntl } from '../../classes/custom-paginator-intl';
 
 @Component({
@@ -15,6 +16,7 @@ export class TableComponent implements OnInit {
   @ViewChild('tableComp') tableComp!: TotsTableComponent;
 
   config = new TotsTableConfig();
+  totsQuery = new TotsQuery();
 
   items = [
     { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
@@ -22,6 +24,19 @@ export class TableComponent implements OnInit {
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
     { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 6', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 7', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 8', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 9', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 10', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 11', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 12', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 13', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 14', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 15', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 16', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 17', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 18', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
 
   ngOnInit(): void {
@@ -49,12 +64,14 @@ export class TableComponent implements OnInit {
       action.item.isSelected = true;
     }else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
+    } else if (action.key == "page-change") {
+      this.pageChange(action.item);
     }
   }
 
   loadConfig() {
     this.config.id = 'table-example';
-    //this.config.paginatorIntl = new CustomPaginatorIntl();
+    this.config.paginatorIntl = new CustomPaginatorIntl();
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',' } },
@@ -90,5 +107,21 @@ export class TableComponent implements OnInit {
     tlr.total = this.items.length;
 
     this.config.obs = of(tlr);
+  }
+
+  private pageChange(pageEvent:PageEvent) {
+    this.totsQuery.page = pageEvent.pageIndex + 1;
+		this.totsQuery.per_page = pageEvent.pageSize;
+    this.getItems();
+  }
+
+  private getItems() {
+    let tlr = new TotsListResponse();
+    let start = this.totsQuery.per_page * (this.totsQuery.page-1);
+    let end = start + this.totsQuery.per_page;
+    tlr.data = this.items.slice(start, end);
+    tlr.total = this.items.length;
+    this.config.obs = of(tlr).pipe(delay(1000));
+    this.tableComp.loadItems();
   }
 }

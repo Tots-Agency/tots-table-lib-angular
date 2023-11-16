@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
@@ -11,7 +11,7 @@ import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entitie
 @Component({
   selector: 'tots-table',
   templateUrl: './tots-table.component.html',
-  styleUrls: ['./tots-table.component.scss']
+  styleUrls: ['./tots-table.component.scss'],
 })
 export class TotsTableComponent implements OnInit, AfterViewInit {
 
@@ -29,7 +29,10 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
   displayColumns: Array<String> = [];
 	@ViewChild("paginator") paginator! : MatPaginator;
 
-  constructor(@Inject(TOTS_TABLE_DEFAULT_CONFIG) protected totsTableDefaultConfig:TotsTableDefaultConfig) {
+  constructor(
+    @Inject(TOTS_TABLE_DEFAULT_CONFIG) protected totsTableDefaultConfig:TotsTableDefaultConfig,
+  ) {
+    this.onPageChange
   }
 
   ngOnInit(): void {
@@ -60,9 +63,13 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
   loadItems() {
     this.dataItems = undefined;
     this.isLoading = true;
-    return this.config.obs?.pipe(tap(res => this.dataItems = res))
-    .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))
-    .subscribe(res => this.isLoading = false);
+    return this.config.obs?.pipe(
+      tap(res => {
+        this.dataItems = res;
+        this.onAction.emit({ key: 'loaded-items', item: undefined })
+        this.isLoading = false;
+      })
+    ).subscribe();
   }
 
   loadConfig() {
@@ -72,10 +79,14 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
     });
   }
   private loadIntl() {
-    if (this.config.paginatorIntl) {
-      this.paginator._intl = this.config.paginatorIntl!;
-    } else if (this.totsTableDefaultConfig.paginatorIntl) {
-      this.paginator._intl = this.totsTableDefaultConfig.paginatorIntl;
+    let intl = this.config.paginatorIntl || this.totsTableDefaultConfig.paginatorIntl;
+    if (intl) {
+      this.paginator._intl.firstPageLabel = intl.firstPageLabel;
+      this.paginator._intl.getRangeLabel = intl.getRangeLabel;
+      this.paginator._intl.itemsPerPageLabel = intl.itemsPerPageLabel;
+      this.paginator._intl.lastPageLabel = intl.lastPageLabel;
+      this.paginator._intl.nextPageLabel = intl.nextPageLabel;
+      this.paginator._intl.previousPageLabel = intl.previousPageLabel;
     }
   }
 
