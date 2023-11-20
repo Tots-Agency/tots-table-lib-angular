@@ -3,6 +3,15 @@ import { FormGroup, Validators } from '@angular/forms';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
+import { TotsBalanceCurrencyColumn } from 'projects/tots/table/src/lib/column-component-constructors/balance-currency-column';
+import { TotsBooleanColumn } from 'projects/tots/table/src/lib/column-component-constructors/boolean-column';
+import { TotsCheckboxColumn } from 'projects/tots/table/src/lib/column-component-constructors/checkbox-column';
+import { TotsDateColumn } from 'projects/tots/table/src/lib/column-component-constructors/date-column';
+import { TotsIconButtonColumn } from 'projects/tots/table/src/lib/column-component-constructors/icon-button-column';
+import { TotsColumnOption, TotsOptionColumn } from 'projects/tots/table/src/lib/column-component-constructors/option-column';
+import { TotsStatusColumn, TotsStatusColumnOption } from 'projects/tots/table/src/lib/column-component-constructors/status-column';
+import { TotsStringColumn } from 'projects/tots/table/src/lib/column-component-constructors/string-column';
+import { TotsTwoStringColumn } from 'projects/tots/table/src/lib/column-component-constructors/two-string-column';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
@@ -57,6 +66,7 @@ export class TableComponent implements OnInit {
 
   loadConfig() {
     this.config.id = 'table-example';
+	/*
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',' } },
@@ -87,6 +97,27 @@ export class TableComponent implements OnInit {
         { icon: 'add', title: 'Eliminar', key: 'remove' },
       ]} },
     ];
+	*/
+
+	this.config.columns = [
+		new TotsCheckboxColumn("check"),
+		new TotsStringColumn("title", "title", "Título", true),
+		new TotsTwoStringColumn("subtitle", "title", "subtitle", "Título / Subtítulo"),
+		new TotsBooleanColumn("include", "active", "Activo"),
+		new TotsIconButtonColumn("home", "home", "primary", "click-home", "a_css_class"),
+		new TotsBalanceCurrencyColumn("active", "credit", "debit", "Balance"),
+		new TotsOptionColumn("active", "active", [
+			new TotsColumnOption(1, "Activo A"),
+			new TotsColumnOption(0, "Inactivo B")
+		], "Activo"),
+		new TotsStatusColumn("active2", "active", [
+			new TotsStatusColumnOption(1, "Activo A", "green", "white"),
+			new TotsStatusColumnOption(0, "Inactivo B", "red", "white"),
+		], "Activo2"),
+		new TotsDateColumn("date", "date", "YYYY-MM-DD", 'MM/DD/YYYY'),
+		// new TotsInputColumn(...)
+		// new TotsMoreColumn(...)
+	]
 
     let data = new TotsListResponse();
     data.data = this.items;
