@@ -1,4 +1,4 @@
-import { StatusColumnComponent } from "../../public-api";
+import { StatusColumnComponent } from "../columns/status-column/status-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 import { TotsStatusColumnOption } from "../entities/tots-status-column-option";
 

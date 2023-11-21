@@ -1,4 +1,4 @@
-import { MoreMenuColumnComponent } from "../../public-api";
+import { MoreMenuColumnComponent } from "../columns/more-menu-column/more-menu-column.component";
 import { TotsColumn } from "../entities/tots-column";
 import { TotsMoreMenuItem } from "../entities/tots-more-menu-item";
 

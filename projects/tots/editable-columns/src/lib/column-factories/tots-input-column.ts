@@ -1,5 +1,5 @@
 import { TotsColumn } from "@tots/table";
-import { InputColumnComponent } from "../../public-api";
+import { InputColumnComponent } from "../columns/input-column/input-column.component";
 import { FormGroup } from "@angular/forms";
 import { MatFormFieldAppearance } from "@angular/material/form-field";
 import { TotsValidator } from "../entities/tots-validator";

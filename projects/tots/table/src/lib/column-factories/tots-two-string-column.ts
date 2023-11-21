@@ -1,4 +1,4 @@
-import { TwoStringColumnComponent } from "../../public-api";
+import { TwoStringColumnComponent } from "../columns/two-string-column/two-string-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsTwoStringColumn extends TotsColumn {

@@ -1,4 +1,4 @@
-import { OptionColumnComponent } from "../../public-api";
+import { OptionColumnComponent } from "../columns/option-column/option-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 import { TotsColumnOption } from "../entities/tots-column-option";
 

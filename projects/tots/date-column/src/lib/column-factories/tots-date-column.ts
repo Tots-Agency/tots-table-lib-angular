@@ -1,5 +1,5 @@
 import { TotsColumn, TotsColumnOrder } from "@tots/table";
-import { DateColumnComponent } from "../../public-api";
+import { DateColumnComponent } from "../columns/date-column/date-column.component";
 
 export class TotsDateColumn extends TotsColumn {
     // format_in y format_out opcionales porque deberían setearse por providers
