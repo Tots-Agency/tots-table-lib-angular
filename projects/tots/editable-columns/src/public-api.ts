@@ -3,6 +3,11 @@
  */
 
 /**
+ * Entities
+ */
+export * from './lib/entities/tots-validator';
+
+/**
  * Columns
  */
 export * from './lib/columns/input-column/input-column.component';
