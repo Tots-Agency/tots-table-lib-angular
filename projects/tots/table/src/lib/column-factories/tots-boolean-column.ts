@@ -1,4 +1,4 @@
-import { BooleanColumnComponent } from "../../public-api";
+import { BooleanColumnComponent } from "../columns/boolean-column/boolean-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsBooleanColumn extends TotsColumn {

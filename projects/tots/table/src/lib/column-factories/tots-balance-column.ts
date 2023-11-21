@@ -1,4 +1,4 @@
-import { BalanceCurrencyColumnComponent } from "../../public-api";
+import { BalanceCurrencyColumnComponent } from "../columns/balance-currency-column/balance-currency-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsBalanceColumn extends TotsColumn {

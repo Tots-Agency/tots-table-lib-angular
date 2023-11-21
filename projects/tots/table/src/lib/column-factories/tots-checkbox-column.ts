@@ -1,5 +1,5 @@
 import { ThemePalette } from "@angular/material/core";
-import { CheckboxColumnComponent } from "../../public-api";
+import { CheckboxColumnComponent } from "../columns/checkbox-column/checkbox-column.component";
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsCheckboxColumn extends TotsColumn {

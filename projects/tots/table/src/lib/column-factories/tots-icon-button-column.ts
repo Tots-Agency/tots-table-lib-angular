@@ -1,5 +1,5 @@
 import { ThemePalette } from "@angular/material/core";
-import { IconButtonColumnComponent } from "../../public-api";
+import { IconButtonColumnComponent } from "../columns/icon-button-column/icon-button-column.component";
 import { TotsColumn } from "../entities/tots-column";
 
 export class TotsIconButtonColumn extends TotsColumn {
