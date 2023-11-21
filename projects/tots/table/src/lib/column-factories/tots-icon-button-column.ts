@@ -3,13 +3,14 @@ import { IconButtonColumnComponent } from "../../public-api";
 import { TotsColumn } from "../entities/tots-column";
 
 export class TotsIconButtonColumn extends TotsColumn {
-	constructor(key:string, icon:string, color:ThemePalette, action:string, classes?:string, title?:string) {
-        super(key, IconButtonColumnComponent, undefined, title);
+	constructor(id:string, icon:string, action:string, color?:ThemePalette, title?:string, cssClass?:string, stickyEnd?:boolean) {
+        super(id, IconButtonColumnComponent, undefined, title);
         this.extra = {
             icon: icon,
             matColor: color,
             action: action,
-            classes: classes
+            class: cssClass,
+            stickyEnd: stickyEnd
         }
     }
 }

@@ -8,7 +8,7 @@ import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
   templateUrl: './input-column.component.html',
   styleUrls: ['./input-column.component.css']
 })
-export class InputColumn extends TotsBaseColumnComponent {
+export class InputColumnComponent extends TotsBaseColumnComponent {
 
   input!: FormControl;
 
@@ -92,9 +92,9 @@ export class InputColumn extends TotsBaseColumnComponent {
     return undefined;
   }
 
-  getClasses() : string {
-    if (this.column.extra && this.column.extra.classes) {
-      return this.column.extra.classes;
+  getClass() : string {
+    if (this.column.extra && this.column.extra.class) {
+      return this.column.extra.class;
     }
     return '';
   }
