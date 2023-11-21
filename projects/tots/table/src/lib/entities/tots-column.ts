@@ -1,7 +1,7 @@
 import { TotsBaseColumnComponent } from "../columns/tots-base-column.component";
 
 export class TotsColumn {
-    key : string;   // Key es un mal nombre. Define el id de la columna en la tabla de material
+    key : string;
     component: any;
     
     field_key?: string|Array<string>;
