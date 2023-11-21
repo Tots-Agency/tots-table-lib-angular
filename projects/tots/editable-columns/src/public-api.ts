@@ -13,6 +13,11 @@ export * from './lib/columns/input-column/input-column.component';
 export * from './lib/components/tots-table-full-group/tots-table-full-group.component';
 
 /**
+ * Factories
+ */
+export * from './lib/column-factories/tots-input-column';
+
+/**
  * Modules
  */
 export * from './lib/editable-columns.module';
