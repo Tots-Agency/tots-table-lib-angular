@@ -9,6 +9,10 @@ export * from './lib/entities/tots-column';
 export * from './lib/entities/tots-table-config';
 export * from './lib/entities/tots-action-table';
 export * from './lib/entities/tots-table-api-config';
+export * from './lib/entities/tots-column-option';
+export * from './lib/entities/tots-more-menu-item';
+export * from './lib/entities/tots-status-column-option';
+export * from './lib/entities/tots-status-icon-column-option';
 
 /**
  * Helpers
