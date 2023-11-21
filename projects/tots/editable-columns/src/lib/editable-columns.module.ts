@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TotsTableModule } from '@tots/table';
 
 /** Columns */
-import { InputColumn } from './columns/input-column/input-column.component';
+import { InputColumnComponent } from './columns/input-column/input-column.component';
 
 /** Components */
 import { TotsTableFullGroupComponent } from './components/tots-table-full-group/tots-table-full-group.component';
@@ -25,7 +25,7 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
   declarations: [
 
     /** Columns */
-    InputColumn,
+    InputColumnComponent,
 
     /** Components */
     TotsTableFullGroupComponent
@@ -44,7 +44,7 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
   ],
   exports: [
     /** Columns */
-    InputColumn,
+    InputColumnComponent,
 
     /** Components */
     TotsTableFullGroupComponent

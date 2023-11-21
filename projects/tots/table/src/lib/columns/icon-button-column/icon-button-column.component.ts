@@ -23,6 +23,6 @@ export class IconButtonColumnComponent extends TotsBaseColumnComponent {
   }
 
   getClasses() : string {
-    return this.column.extra.classes;
+    return this.column.extra.class;
   }
 }
