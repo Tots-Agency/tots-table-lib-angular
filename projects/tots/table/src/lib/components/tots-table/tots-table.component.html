@@ -9,7 +9,7 @@
                 <mat-icon [ngClass]="{'sort_active': column.order == 'desc'}">arrow_drop_down</mat-icon>
             </th>
             <!-- TD -->
-            <td mat-cell *matCellDef="let item" [ngStyle]="{'width': column.extra?.width ? column.extra.width : 'auto'}"><tots-base-print-column [column]="column" [item]="item" [onAction]="privateActions"></tots-base-print-column></td>
+            <td mat-cell *matCellDef="let item; let index = index;" [ngStyle]="{'width': column.extra?.width ? column.extra.width : 'auto'}"><tots-base-print-column [column]="column" [item]="item" [index]="index" [onAction]="privateActions"></tots-base-print-column></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>

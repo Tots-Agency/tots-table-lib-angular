@@ -6,6 +6,9 @@
       "@tots/date-column": [
         "dist/tots/date-column"
       ],
+      "@tots/editable-columns": [
+        "dist/tots/editable-columns"
+      ],
       "@tots/table": [
         "dist/tots/table"
       ]

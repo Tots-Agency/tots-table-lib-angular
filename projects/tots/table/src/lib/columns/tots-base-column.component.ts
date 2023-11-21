@@ -13,6 +13,7 @@ export class TotsBaseColumnComponent{
     @Input() column!: TotsColumn;
     @Input() item: any;
     @Input() onAction!: Subject<TotsActionTable>;
+    @Input() index?: number;
 
     getItemValue(): any {
         return TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);

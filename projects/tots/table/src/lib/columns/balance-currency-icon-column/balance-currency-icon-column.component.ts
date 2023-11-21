@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BalanceCurrencyColumnComponent } from '../balance-currency-column/balance-currency-column.component';
-import { TotsTableHelper } from '../../helpers/tots-table-helper';
 
 @Component({
   selector: 'tots-balance-currency-icon-column',
