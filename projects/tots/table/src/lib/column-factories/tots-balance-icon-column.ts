@@ -2,7 +2,7 @@ import { BalanceCurrencyIconColumnComponent } from "../columns/balance-currency-
 import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsBalanceIconColumn extends TotsColumn {
-	constructor(id:string, activeAssetFieldKey:string, passiveAssetFieldKey:string, neutralIcon:string, positiveIcon:string, negativeIcon:string, title?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
+	constructor(id:string, activeAssetFieldKey:string|string[], passiveAssetFieldKey:string|string[], neutralIcon:string, positiveIcon:string, negativeIcon:string, title?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
         super(id, BalanceCurrencyIconColumnComponent, undefined, title, hasOrder, order);
         this.extra = {
             field_key_credit: activeAssetFieldKey,

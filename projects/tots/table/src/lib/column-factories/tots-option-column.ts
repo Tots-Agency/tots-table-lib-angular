@@ -3,7 +3,7 @@ import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 import { TotsColumnOption } from "../entities/tots-column-option";
 
 export class TotsOptionColumn extends TotsColumn {
-	constructor(id:string, fieldKey:string, options:TotsColumnOption[], title?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
+	constructor(id:string, fieldKey:string|string[], options:TotsColumnOption[], title?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
         super(id, OptionColumnComponent, fieldKey, title, hasOrder, order);
         this.extra = {
             options: options,
