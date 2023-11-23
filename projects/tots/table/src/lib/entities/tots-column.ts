@@ -12,7 +12,7 @@ export class TotsColumn {
     hasOrder? : boolean;
     order?: 'asc'|'desc';
 
-    constructor(key:string, component:any, field_key?:string, title?:string, hasOrder=false, order?:TotsColumnOrder) {
+    constructor(key:string, component:any, field_key?:string|string[], title?:string, hasOrder=false, order?:TotsColumnOrder) {
         this.key = key;
         this.field_key = field_key;
         this.title = title;
