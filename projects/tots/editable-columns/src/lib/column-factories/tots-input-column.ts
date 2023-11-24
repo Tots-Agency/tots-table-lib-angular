@@ -5,7 +5,7 @@ import { MatFormFieldAppearance } from "@angular/material/form-field";
 import { TotsValidator } from "../entities/tots-validator";
 
 export class TotsInputColumn extends TotsColumn {
-	constructor(id:string, fieldKey:string, validators?:TotsValidator[], title?:string, formGroup?:FormGroup, label?:string, placeholder?:string, hint?:string, cssClass?:string, appearance?:MatFormFieldAppearance) {
+	constructor(id:string, fieldKey:string|string[], validators?:TotsValidator[], title?:string, formGroup?:FormGroup, label?:string, placeholder?:string, hint?:string, cssClass?:string, appearance?:MatFormFieldAppearance) {
         super(id, InputColumnComponent, fieldKey, title);
         this.extra = {
             group: formGroup,
