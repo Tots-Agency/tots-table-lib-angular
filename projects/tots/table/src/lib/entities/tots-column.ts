@@ -1,5 +1,3 @@
-import { TotsBaseColumnComponent } from "../columns/tots-base-column.component";
-
 export class TotsColumn {
     key : string;
     component: any;
@@ -17,6 +15,8 @@ export class TotsColumn {
         this.field_key = field_key;
         this.title = title;
         this.component = component;
+        this.hasOrder = hasOrder;
+        this.order = order;
     }
 }
 
