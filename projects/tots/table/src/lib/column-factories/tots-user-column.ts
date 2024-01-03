@@ -3,7 +3,7 @@ import { TotsColumn, TotsColumnOrder } from "../entities/tots-column";
 
 export class TotsUserColumn extends TotsColumn {
     // first name, last name y photo obligatorios. Si no hay variable de foto, que usen two string column
-	constructor(id:string, firstNameFieldKey:string, lastNameFieldKey:string, photoFieldKey:string, secondLineFieldKey?:string, title?:string, onlineFieldKey?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
+	constructor(id:string, firstNameFieldKey:string|string[], lastNameFieldKey:string|string[], photoFieldKey:string|string[], secondLineFieldKey?:string|string[], title?:string, onlineFieldKey?:string, hasOrder?:boolean, order?:TotsColumnOrder) {
         super(id, UserColumnComponent, undefined, title, hasOrder, order);
         this.extra = {
             field_firstname_key: firstNameFieldKey,
