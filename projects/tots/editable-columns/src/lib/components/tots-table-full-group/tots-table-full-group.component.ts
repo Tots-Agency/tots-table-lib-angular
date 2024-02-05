@@ -25,6 +25,9 @@ export class TotsTableFullGroupComponent {
     if (action.key == "init") {
       this.loadGroup();
 
+    } else if (action.key == 'loaded-items') {
+      this.loadGroup();
+
     } else if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
 
@@ -46,7 +49,10 @@ export class TotsTableFullGroupComponent {
     group.addControl(this.getFormKey(column), input);
   }
 
-  loadGroup() {
+  private loadGroup() {
+    if (!this.tableComp)
+      return;
+
     // Get Items
     let items = this.tableComp.getDataItems();
 
@@ -75,5 +81,6 @@ export class TotsTableFullGroupComponent {
 
   loadItems() {
     this.tableComp?.loadItems();
+    //this.loadGroup();
   }
 }

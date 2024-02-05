@@ -146,7 +146,7 @@ export class TableComponent implements OnInit {
     ];
 
     let data = new TotsListResponse();
-    data.data = this.items;
+    data.data = [...this.items];
 
     this.config.obs = of(data);
 
@@ -155,13 +155,13 @@ export class TableComponent implements OnInit {
       this.items = [
         ...this.items,
         { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
-      ] ;
+      ];
 
       let data = new TotsListResponse();
       data.data = this.items;
   
       this.config.obs = of(data);
 		  this.tableCompGroup?.loadItems();
-    }, 2000);
+    }, 20000);
   }
 }
