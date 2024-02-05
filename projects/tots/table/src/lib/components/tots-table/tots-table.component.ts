@@ -34,6 +34,7 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
     this.loadConfig();
     this.loadItems();
   }
+
   ngAfterViewInit(): void {
     this.onAction.emit({ key: 'init', item: undefined });
   }
