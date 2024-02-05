@@ -5,7 +5,7 @@ import { TotsDateColumn } from 'projects/tots/date-column/src/lib/column-factori
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { TotsInputColumn } from 'projects/tots/editable-columns/src/lib/column-factories/tots-input-column';
 import { TotsValidator } from 'projects/tots/editable-columns/src/lib/entities/tots-validator';
-import { InputColumnComponent } from 'projects/tots/editable-columns/src/public-api';
+import { InputColumnComponent, TotsTableFullGroupComponent } from 'projects/tots/editable-columns/src/public-api';
 import { TotsBalanceColumn } from 'projects/tots/table/src/lib/column-factories/tots-balance-column';
 import { TotsBooleanColumn } from 'projects/tots/table/src/lib/column-factories/tots-boolean-column';
 import { TotsCheckboxColumn } from 'projects/tots/table/src/lib/column-factories/tots-checkbox-column';
@@ -31,6 +31,7 @@ import { delay, of } from 'rxjs';
 export class TableComponent implements OnInit {
 
   @ViewChild('tableComp') tableComp!: TotsTableComponent;
+  @ViewChild('tableCompGroup') tableCompGroup!: TotsTableFullGroupComponent;
 
   config = new TotsTableConfig();
 
@@ -38,7 +39,7 @@ export class TableComponent implements OnInit {
     { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
     { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
     { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
+    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada" },
     { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
 
@@ -115,6 +116,7 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
 
     this.config.columns = [
+      /*
       new TotsCheckboxColumn("check"),
       new TotsStringColumn("title", "title", "Título", true),
       new TotsTwoStringColumn("subtitle", "title", "subtitle", "Título / Subtítulo"),
@@ -130,19 +132,36 @@ export class TableComponent implements OnInit {
         new TotsStatusIconColumnOption(0, "clear", "red"),
       ], "Activo2"),
       new TotsDateColumn("date", "date", "Fecha", "YYYY-MM-DD", 'MM/DD/YYYY'),
+      */
       new TotsInputColumn("edit_field", "edit_field", [
-        new TotsValidator(Validators.required, "required", "Requerido dasas"),
-        new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo")
+        new TotsValidator(Validators.required, "required", "Requerido"),
+        new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo"),
+        new TotsValidator(Validators.pattern("^[0-9]*$"), "pattern", "Inválido")
       ], "Input", undefined, "Ingrese un número"),
+      /*
       new TotsMoreMenuColumn("more", [
         new TotsMoreMenuItem("edit", "Editar", "edit", "a_css_class"),
         new TotsMoreMenuItem("delete", "Eliminar", "delete"),
-      ])
+      ]),*/
     ];
 
     let data = new TotsListResponse();
-    data.data = this.items;
+    data.data = [...this.items];
 
-    this.config.obs = of(data).pipe(delay(1000));
+    this.config.obs = of(data);
+
+    setTimeout(() => {
+      console.log("timeout");
+      this.items = [
+        ...this.items,
+        { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
+      ];
+
+      let data = new TotsListResponse();
+      data.data = this.items;
+  
+      this.config.obs = of(data);
+		  this.tableCompGroup?.loadItems();
+    }, 20000);
   }
 }

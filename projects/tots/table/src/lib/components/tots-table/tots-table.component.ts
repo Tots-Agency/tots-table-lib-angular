@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
@@ -11,7 +11,7 @@ import { TotsTableConfig } from '../../entities/tots-table-config';
   templateUrl: './tots-table.component.html',
   styleUrls: ['./tots-table.component.scss']
 })
-export class TotsTableComponent implements OnInit {
+export class TotsTableComponent implements OnInit, AfterViewInit {
 
   @Input() config = new TotsTableConfig();
   @Input() pageIndex: number = 0;
@@ -33,6 +33,9 @@ export class TotsTableComponent implements OnInit {
   ngOnInit(): void {
     this.loadConfig();
     this.loadItems();
+  }
+  ngAfterViewInit(): void {
+    this.onAction.emit({ key: 'init', item: undefined });
   }
 
   onClickOrder(column: TotsColumn) {
