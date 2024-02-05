@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from '@tots/table';
 
@@ -7,7 +7,7 @@ import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from
   templateUrl: './tots-table-full-group.component.html',
   styleUrls: ['./tots-table-full-group.component.css']
 })
-export class TotsTableFullGroupComponent implements OnInit {
+export class TotsTableFullGroupComponent {
 
   @ViewChild('tableComp') protected tableComp!: TotsTableComponent;
 
@@ -21,13 +21,13 @@ export class TotsTableFullGroupComponent implements OnInit {
 
   formArrayMain?: FormArray<FormGroup>;
 
-  ngOnInit(): void {
-    this.loadGroup();
-  }
-
   protected onTableAction(action: TotsActionTable) {
-    if (action.key == 'input-create') {
+    if (action.key == "init") {
+      this.loadGroup();
+
+    } else if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
+
     } else if (action.key == 'input-change') {
       this.onAction.emit(action);
       setTimeout(() => {
@@ -46,23 +46,23 @@ export class TotsTableFullGroupComponent implements OnInit {
     group.addControl(this.getFormKey(column), input);
   }
 
-  private loadGroup() {
-    this.config.obs?.subscribe(items=> {
+  loadGroup() {
+    // Get Items
+    let items = this.tableComp.getDataItems();
 
-      // Create main array form
-      this.formArrayMain = new FormArray<FormGroup>([]);
+    // Create main array form
+    this.formArrayMain = new FormArray<FormGroup>([]);
 
-      // Verify if undefined
-      if(items == undefined){
-        return;
-      }
+    // Verify if undefined
+    if(items == undefined){
+      return;
+    }
 
-      // Create form group for each item
-      items.data.forEach(item => {
-        let group = new FormGroup({});
-        this.formArrayMain?.push(group);
-      });
-    })
+    // Create form group for each item
+    items.data.forEach(item => {
+      let group = new FormGroup({});
+      this.formArrayMain?.push(group);
+    });
   }
 
   private getFormKey(column: TotsColumn): string {
