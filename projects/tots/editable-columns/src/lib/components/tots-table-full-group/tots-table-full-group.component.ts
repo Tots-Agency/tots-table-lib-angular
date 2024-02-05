@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { TotsListResponse } from '@tots/core';
 import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from '@tots/table';
 
 @Component({
@@ -22,11 +23,8 @@ export class TotsTableFullGroupComponent {
   formArrayMain?: FormArray<FormGroup>;
 
   protected onTableAction(action: TotsActionTable) {
-    if (action.key == "init") {
-      this.loadGroup();
-
-    } else if (action.key == 'loaded-items') {
-      this.loadGroup();
+    if (action.key == 'loaded-items') {
+      this.loadGroup(action.item);
 
     } else if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
@@ -43,28 +41,16 @@ export class TotsTableFullGroupComponent {
 
   private addInputInGroup(input: FormControl, index: number, column: TotsColumn) {
     let group = this.formArrayMain?.at(index);
+    
     if(group == undefined){
       return;
     }
     group.addControl(this.getFormKey(column), input);
   }
 
-  private loadGroup() {
-    if (!this.tableComp)
-      return;
-
-    // Get Items
-    let items = this.tableComp.getDataItems();
-
-    // Create main array form
+  private loadGroup(items:TotsListResponse<any>) {
     this.formArrayMain = new FormArray<FormGroup>([]);
 
-    // Verify if undefined
-    if(items == undefined){
-      return;
-    }
-
-    // Create form group for each item
     items.data.forEach(item => {
       let group = new FormGroup({});
       this.formArrayMain?.push(group);

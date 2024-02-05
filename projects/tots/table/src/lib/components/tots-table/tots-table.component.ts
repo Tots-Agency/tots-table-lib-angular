@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
@@ -11,7 +11,7 @@ import { TotsTableConfig } from '../../entities/tots-table-config';
   templateUrl: './tots-table.component.html',
   styleUrls: ['./tots-table.component.scss']
 })
-export class TotsTableComponent implements OnInit, AfterViewInit {
+export class TotsTableComponent implements OnInit {
 
   @Input() config = new TotsTableConfig();
   @Input() pageIndex: number = 0;
@@ -35,10 +35,6 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
     this.loadItems();
   }
 
-  ngAfterViewInit(): void {
-    this.onAction.emit({ key: 'init', item: undefined });
-  }
-
   onClickOrder(column: TotsColumn) {
     if(!column.hasOrder){ return; }
     let orderColumn = column.order;
@@ -58,9 +54,12 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
   loadItems() {
     this.dataItems = undefined;
     this.isLoading = true;
-    return this.config.obs?.pipe(tap(res => this.dataItems = res))
-    .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))
-    .subscribe(res => this.isLoading = false);
+    return this.config.obs?.pipe(
+      tap(res => {
+        this.dataItems = res;
+        this.onAction.emit({ key: 'loaded-items', item: res })
+      })
+    ).subscribe(res => this.isLoading = false);
   }
 
   loadConfig() {

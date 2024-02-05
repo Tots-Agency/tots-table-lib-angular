@@ -64,13 +64,14 @@ export class TableComponent implements OnInit {
   }
 
   onTableAction(action: TotsActionTable) {
-    console.log(action);
     if(action.key == 'click-order'){
       this.onOrder(action.item);
     }else if (action.key == 'select-item') {
       action.item.isSelected = true;
     }else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
+    } else if (action.key == "form-change") {
+      console.log(action.item);
     }
   }
 
@@ -149,19 +150,18 @@ export class TableComponent implements OnInit {
     data.data = [...this.items];
 
     this.config.obs = of(data);
+  }
 
-    setTimeout(() => {
-      console.log("timeout");
-      this.items = [
-        ...this.items,
-        { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
-      ];
+  addItem() {
+    this.items = [
+      ...this.items,
+      { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
+    ];
 
-      let data = new TotsListResponse();
-      data.data = this.items;
-  
-      this.config.obs = of(data);
-		  this.tableCompGroup?.loadItems();
-    }, 20000);
+    let data = new TotsListResponse();
+    data.data = this.items;
+
+    this.config.obs = of(data);
+    this.tableCompGroup?.loadItems();
   }
 }
