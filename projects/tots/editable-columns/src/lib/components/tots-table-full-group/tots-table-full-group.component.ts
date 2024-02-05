@@ -81,6 +81,5 @@ export class TotsTableFullGroupComponent {
 
   loadItems() {
     this.tableComp?.loadItems();
-    //this.loadGroup();
   }
 }
