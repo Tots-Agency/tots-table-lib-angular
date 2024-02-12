@@ -20,41 +20,32 @@ export class TotsTableFullGroupComponent {
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
 
-  formArrayMain?: FormArray<FormGroup>;
+  formArrayMain : FormArray<FormGroup> = new FormArray<FormGroup>([]);
 
   protected onTableAction(action: TotsActionTable) {
-    if (action.key == 'loaded-items') {
-      this.loadGroup(action.item);
-
-    } else if (action.key == 'input-create') {
+    if (action.key == 'input-create') {
       this.addInputInGroup(action.item.input, action.item.index, action.item.column);
 
     } else if (action.key == 'input-change') {
       this.onAction.emit(action);
       setTimeout(() => {
-        this.onAction.emit({ key: 'form-change', item: { valid: this.formArrayMain!.valid, values: this.formArrayMain?.value } });
+        this.onAction.emit({ key: 'form-change', item: { valid: this.formArrayMain.valid, values: this.formArrayMain.value } });
       });
-      return;
+
+    } else if (action.key == "input-destroy" ) {
+      this.removeInputFromGroup(action.item);
     }
+
     this.onAction.emit(action);
   }
 
   private addInputInGroup(input: FormControl, index: number, column: TotsColumn) {
-    let group = this.formArrayMain?.at(index);
-    
-    if(group == undefined){
-      return;
-    }
+    let group = new FormGroup({});
     group.addControl(this.getFormKey(column), input);
+    this.formArrayMain.push(group);
   }
-
-  private loadGroup(items:TotsListResponse<any>) {
-    this.formArrayMain = new FormArray<FormGroup>([]);
-
-    items.data.forEach(item => {
-      let group = new FormGroup({});
-      this.formArrayMain?.push(group);
-    });
+  private removeInputFromGroup(index:number) {
+    this.formArrayMain.removeAt(index);
   }
 
   private getFormKey(column: TotsColumn): string {
