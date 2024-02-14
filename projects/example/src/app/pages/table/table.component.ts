@@ -35,12 +35,14 @@ export class TableComponent implements OnInit {
 
   config = new TotsTableConfig();
 
+  private id = 0;
+
   items = [
-    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
-    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
-    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada" },
-    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+    { id: this.id++, title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
+    { id: this.id++, title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
+    { id: this.id++, title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { id: this.id++, title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada" },
+    { id: this.id++, title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
 
   formGroup = new FormGroup({});
@@ -71,7 +73,10 @@ export class TableComponent implements OnInit {
     }else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
     } else if (action.key == "form-change") {
-      console.log(action.item);
+      console.log(action.item.valid);
+      console.log(action.item.values);
+    } else if (action.key == "delete") {
+      this.removeItem(action.item);
     }
   }
 
@@ -139,6 +144,7 @@ export class TableComponent implements OnInit {
         new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo"),
         new TotsValidator(Validators.pattern("^[0-9]*$"), "pattern", "Inválido")
       ], "Input", undefined, "Ingrese un número"),
+      new TotsIconButtonColumn("delete", "delete", "delete", "warn")
       /*
       new TotsMoreMenuColumn("more", [
         new TotsMoreMenuItem("edit", "Editar", "edit", "a_css_class"),
@@ -155,9 +161,18 @@ export class TableComponent implements OnInit {
   addItem() {
     this.items = [
       ...this.items,
-      { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
+      { id:this.id++, title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', edit_field: "pushed item" } as any
     ];
 
+    let data = new TotsListResponse();
+    data.data = this.items;
+
+    this.config.obs = of(data);
+    this.tableCompGroup?.loadItems();
+  }
+
+  removeItem(item:any) {
+    this.items = this.items.filter(i=> i.id != item.id)
     let data = new TotsListResponse();
     data.data = this.items;
 

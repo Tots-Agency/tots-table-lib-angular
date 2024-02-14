@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
@@ -8,7 +8,7 @@ import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
   templateUrl: './input-column.component.html',
   styleUrls: ['./input-column.component.css']
 })
-export class InputColumnComponent extends TotsBaseColumnComponent {
+export class InputColumnComponent extends TotsBaseColumnComponent implements OnDestroy {
 
   input!: FormControl;
 
@@ -20,6 +20,9 @@ export class InputColumnComponent extends TotsBaseColumnComponent {
     this.loadInput();
     this.loadForm();
     this.loadChanges();
+  }
+  ngOnDestroy(): void {
+    this.onAction.next({ key: 'input-destroy', item: this.index });
   }
 
   loadChanges() {
