@@ -29,23 +29,44 @@ export class TotsTableFullGroupComponent {
     } else if (action.key == 'input-change') {
       this.onAction.emit(action);
       setTimeout(() => {
-        this.onAction.emit({ key: 'form-change', item: { valid: this.formArrayMain.valid, values: this.formArrayMain.value } });
+        this.emitFormChange();
       });
 
     } else if (action.key == "input-destroy" ) {
-      this.removeInputFromGroup(action.item);
+      this.removeInputFromGroup(action.item.index, action.item.field_key);
     }
 
     this.onAction.emit(action);
   }
 
   private addInputInGroup(input: FormControl, index: number, column: TotsColumn) {
-    let group = new FormGroup({});
-    group.addControl(this.getFormKey(column), input);
-    this.formArrayMain.push(group);
+    let group = this.formArrayMain.at(index);
+    
+    if (group) {
+      group.addControl(this.getFormKey(column), input);
+      this.formArrayMain.setControl(index, group);
+
+    } else {
+      group = new FormGroup({});
+      group.addControl(this.getFormKey(column), input);
+      this.formArrayMain.push(group);
+      this.emitFormChange();
+    }
+    
   }
-  private removeInputFromGroup(index:number) {
-    this.formArrayMain.removeAt(index);
+  private removeInputFromGroup(index: number, field_key: string) {
+    let formGroup = this.formArrayMain.at(index);
+    if (!formGroup)
+      return
+
+    formGroup.removeControl(field_key);
+
+    let keys = Object.keys(formGroup.controls);
+
+    if (keys.length == 0) {
+      this.formArrayMain.removeAt(index);
+      this.emitFormChange();
+    }
   }
 
   private getFormKey(column: TotsColumn): string {
@@ -58,5 +79,9 @@ export class TotsTableFullGroupComponent {
 
   loadItems() {
     this.tableComp?.loadItems();
+  }
+
+  private emitFormChange() {
+    this.onAction.emit({ key: 'form-change', item: { valid: this.formArrayMain.valid, values: this.formArrayMain.value } });
   }
 }
