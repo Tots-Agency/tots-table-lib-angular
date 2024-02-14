@@ -22,13 +22,12 @@ export class InputColumnComponent extends TotsBaseColumnComponent implements OnD
     this.loadChanges();
   }
   ngOnDestroy(): void {
-    this.onAction.next({ key: 'input-destroy', item: this.index });
+    this.onAction.next({ key: 'input-destroy', item: { field_key: this.getFormKey(), index: this.index } });
   }
 
   loadChanges() {
-    this.input.valueChanges
-    .subscribe(res => {
-      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: res, valid: this.input.valid, index: this.index } });
+    this.input.valueChanges.subscribe(value => {
+      this.onAction.next({ key: 'input-change', item: { field_key: this.getFormKey(), item: this.item, value: value, valid: this.input.valid, index: this.index } });
     });
   }
 

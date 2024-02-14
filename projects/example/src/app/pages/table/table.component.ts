@@ -139,6 +139,9 @@ export class TableComponent implements OnInit {
       ], "Activo2"),
       new TotsDateColumn("date", "date", "Fecha", "YYYY-MM-DD", 'MM/DD/YYYY'),
       */
+      new TotsInputColumn("title", "title", [
+        new TotsValidator(Validators.required, "required", "Requerido"),
+      ], "Title input", undefined, "Ingrese un título"),
       new TotsInputColumn("edit_field", "edit_field", [
         new TotsValidator(Validators.required, "required", "Requerido"),
         new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo"),
