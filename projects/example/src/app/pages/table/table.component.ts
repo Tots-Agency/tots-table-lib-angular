@@ -49,7 +49,8 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     //this.legacyConfig();
-    this.configThroughFactories();
+    //this.configThroughFactories();
+    this.miniConfig();
   }
 
   onOrder(column: TotsColumn) {
@@ -122,7 +123,6 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
 
     this.config.columns = [
-      /*
       new TotsCheckboxColumn("check"),
       new TotsStringColumn("title", "title", "Título", true),
       new TotsTwoStringColumn("subtitle", "title", "subtitle", "Título / Subtítulo"),
@@ -138,7 +138,6 @@ export class TableComponent implements OnInit {
         new TotsStatusIconColumnOption(0, "clear", "red"),
       ], "Activo2"),
       new TotsDateColumn("date", "date", "Fecha", "YYYY-MM-DD", 'MM/DD/YYYY'),
-      */
       new TotsInputColumn("title", "title", [
         new TotsValidator(Validators.required, "required", "Requerido"),
       ], "Title input", undefined, "Ingrese un título"),
@@ -147,12 +146,23 @@ export class TableComponent implements OnInit {
         new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo"),
         new TotsValidator(Validators.pattern("^[0-9]*$"), "pattern", "Inválido")
       ], "Input", undefined, "Ingrese un número"),
-      new TotsIconButtonColumn("delete", "delete", "delete", "warn")
-      /*
+      new TotsIconButtonColumn("delete", "delete", "delete", "warn"),
       new TotsMoreMenuColumn("more", [
         new TotsMoreMenuItem("edit", "Editar", "edit", "a_css_class"),
         new TotsMoreMenuItem("delete", "Eliminar", "delete"),
-      ]),*/
+      ])
+    ];
+
+    let data = new TotsListResponse();
+    data.data = [...this.items];
+
+    this.config.obs = of(data);
+  }
+  miniConfig() {
+    this.config.id = 'table-example';
+
+    this.config.columns = [
+      new TotsStringColumn("title", "title", "Título", false, undefined, "Prepend"),
     ];
 
     let data = new TotsListResponse();
