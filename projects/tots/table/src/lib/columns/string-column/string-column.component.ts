@@ -18,4 +18,8 @@ export class StringColumnComponent extends TotsBaseColumnComponent {
 
     return value;
   }
+
+  protected get prepend() : string|undefined {
+    return this.column.extra?.prepend;
+  }
 }
