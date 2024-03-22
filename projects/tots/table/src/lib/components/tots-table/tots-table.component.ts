@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
+import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
 
 @Component({
   selector: 'tots-table',
@@ -17,7 +18,7 @@ export class TotsTableComponent implements OnInit {
   @Input() pageIndex: number = 0;
   @Input() pageSize: number = 50;
   @Input() hasPagination: boolean = true;
-  @Input() messageNotFound: string = "No results found, please try with other search terms";
+  @Input() messageNotFound! : string;
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
   privateActions = new Subject<TotsActionTable>();
@@ -27,8 +28,11 @@ export class TotsTableComponent implements OnInit {
   displayColumns: Array<String> = [];
 
   constructor(
-    protected changeDectetor: ChangeDetectorRef
-  ) {}
+    protected changeDectetor: ChangeDetectorRef,
+    @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig
+  ) {
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound;
+  }
 
   ngOnInit(): void {
     this.loadConfig();

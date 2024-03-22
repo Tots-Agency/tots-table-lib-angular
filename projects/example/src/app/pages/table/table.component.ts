@@ -12,13 +12,11 @@ import { TotsCheckboxColumn } from 'projects/tots/table/src/lib/column-factories
 import { TotsIconButtonColumn } from 'projects/tots/table/src/lib/column-factories/tots-icon-button-column';
 import { TotsMoreMenuColumn } from 'projects/tots/table/src/lib/column-factories/tots-more-menu-column';
 import { TotsOptionColumn } from 'projects/tots/table/src/lib/column-factories/tots-option-column';
-import { TotsStatusColumn } from 'projects/tots/table/src/lib/column-factories/tots-status-column';
 import { TotsStatusIconColumn } from 'projects/tots/table/src/lib/column-factories/tots-status-icon-column';
 import { TotsStringColumn } from 'projects/tots/table/src/lib/column-factories/tots-string-column';
 import { TotsTwoStringColumn } from 'projects/tots/table/src/lib/column-factories/tots-two-string-column';
 import { TotsColumnOption } from 'projects/tots/table/src/lib/entities/tots-column-option';
 import { TotsMoreMenuItem } from 'projects/tots/table/src/lib/entities/tots-more-menu-item';
-import { TotsStatusColumnOption } from 'projects/tots/table/src/lib/entities/tots-status-column-option';
 import { TotsStatusIconColumnOption } from 'projects/tots/table/src/lib/entities/tots-status-icon-column-option';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
@@ -166,7 +164,8 @@ export class TableComponent implements OnInit {
     ];
 
     let data = new TotsListResponse();
-    data.data = [...this.items];
+    //data.data = [...this.items];
+    data.data = [];
 
     this.config.obs = of(data);
   }
