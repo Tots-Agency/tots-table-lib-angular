@@ -32,8 +32,6 @@ export class TotsTableComponent implements OnInit {
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
     protected changeDectetor: ChangeDetectorRef
   ) {
-    console.log(this.totsTableDefaultConfig.messageNotFound);
-    
     this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
   }
 
