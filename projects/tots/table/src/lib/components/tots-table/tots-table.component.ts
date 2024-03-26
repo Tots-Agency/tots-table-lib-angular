@@ -50,7 +50,6 @@ export class TotsTableComponent implements OnInit {
     });
   }
   loadItems() {
-    this.dataItems = undefined;
     this.isLoading = true;
     return this.config.obs?.pipe(
       tap(res => {

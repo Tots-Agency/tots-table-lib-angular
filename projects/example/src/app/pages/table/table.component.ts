@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { TotsDateColumn } from 'projects/tots/date-column/src/lib/column-factories/tots-date-column';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
@@ -76,6 +77,8 @@ export class TableComponent implements OnInit {
       console.log(action.item.values);
     } else if (action.key == "delete") {
       this.removeItem(action.item);
+    } else if (action.key == "page-change") {
+      this.changePage(action.item);
     }
   }
 
@@ -165,6 +168,7 @@ export class TableComponent implements OnInit {
 
     let data = new TotsListResponse();
     data.data = [...this.items];
+    data.total = 50;
 
     this.config.obs = of(data).pipe(delay(2000));
   }
@@ -190,4 +194,13 @@ export class TableComponent implements OnInit {
     this.config.obs = of(data);
     this.tableCompGroup?.loadItems();
   }
+
+	private changePage(pageEvent:PageEvent) {
+    let data = new TotsListResponse();
+    data.data = [...this.items];
+    data.total = 50;
+
+    this.config.obs = of(data).pipe(delay(2000));
+    this.tableComp.loadItems();
+	}
 }
