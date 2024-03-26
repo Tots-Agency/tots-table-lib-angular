@@ -30,6 +30,7 @@ import { BalanceCurrencyColumnComponent } from './columns/balance-currency-colum
 import { StatusIconColumnComponent } from './columns/status-icon-column/status-icon-column.component';
 import { BalanceCurrencyIconColumnComponent } from './columns/balance-currency-icon-column/balance-currency-icon-column.component';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from './entities/tots-table-default-config';
+import { LoadingAnimationRendererComponent } from './components/loading-animation-renderer/loading-animation-renderer.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from './entities/to
     StatusColumnComponent,
     BalanceCurrencyColumnComponent,
     StatusIconColumnComponent,
-    BalanceCurrencyIconColumnComponent
+    BalanceCurrencyIconColumnComponent,
+    LoadingAnimationRendererComponent
   ],
   imports: [
     CommonModule,

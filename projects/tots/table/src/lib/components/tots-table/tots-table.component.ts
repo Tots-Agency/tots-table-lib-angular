@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
@@ -6,14 +6,13 @@ import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'tots-table',
   templateUrl: './tots-table.component.html',
   styleUrls: ['./tots-table.component.scss']
 })
-export class TotsTableComponent implements OnInit, AfterViewInit {
+export class TotsTableComponent implements OnInit {
 
   @Input() config = new TotsTableConfig();
   @Input() pageIndex: number = 0;
@@ -28,44 +27,20 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
 
-	@ViewChild('loadingComponentContainer', { read: ViewContainerRef }) loadingComponentContainer! : ViewContainerRef;
-  loadingComponent! : ComponentRef<any>;
-
   //#region Setup
   constructor(
     protected changeDectetor: ChangeDetectorRef,
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
-		private viewContainerRef: ViewContainerRef
   ) {
     this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
   }
 
   //#region Lifetime cycles
   ngOnInit(): void {
-    this.setLoader();
     this.loadConfig();
     this.loadItems();      
   }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      if (this.isLoading)
-        this.renderLoading();
-    });
-  }
-  ngOnDestroy() {
-    this.loadingComponentContainer?.clear();
-  }
   //#endregion
-
-  private setLoader() {
-    if (this.totsTableDefaultConfig.loadingComponent) {
-      this.loadingComponent = this.viewContainerRef.createComponent(this.totsTableDefaultConfig.loadingComponent);
-    } else {
-      this.loadingComponent = this.viewContainerRef.createComponent(MatProgressSpinner);
-      this.loadingComponent.instance.diameter = 50;
-      this.loadingComponent.instance.mode = "indeterminate";
-    }
-  }
 
   loadConfig() {
     this.loadColumns();
@@ -76,20 +51,12 @@ export class TotsTableComponent implements OnInit, AfterViewInit {
   loadItems() {
     this.dataItems = undefined;
     this.isLoading = true;
-    this.renderLoading();
     return this.config.obs?.pipe(
       tap(res => {
         this.dataItems = res;
         this.onAction.emit({ key: 'loaded-items', item: res })
       })
-    ).subscribe(()=> this.stopLoading());
-  }
-  private renderLoading() {
-      this.loadingComponentContainer?.insert(this.loadingComponent.hostView);
-  }
-  private stopLoading() {
-    this.isLoading = false;
-    this.loadingComponentContainer?.clear();
+    ).subscribe(()=> this.isLoading = false);
   }
   //#endregion
 
