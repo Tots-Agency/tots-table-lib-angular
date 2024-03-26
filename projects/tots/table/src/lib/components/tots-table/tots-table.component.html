@@ -21,7 +21,9 @@
         </ng-container>
     </table>
 
-    <div *ngIf="isLoading" class="tots-table-loading"><mat-spinner [diameter]="50"></mat-spinner></div>
+    <div *ngIf="isLoading" class="tots-table-loading">
+        <tots-loading-animation-renderer></tots-loading-animation-renderer>
+    </div>
 
     <!-- Paginator -->
     <mat-paginator *ngIf="dataItems && dataItems.data.length > 0 && hasPagination" [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>

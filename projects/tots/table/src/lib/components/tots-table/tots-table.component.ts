@@ -27,17 +27,38 @@ export class TotsTableComponent implements OnInit {
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
 
+  //#region Setup
   constructor(
     protected changeDectetor: ChangeDetectorRef,
-    @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig
+    @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
   ) {
-    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound;
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
   }
 
+  //#region Lifetime cycles
   ngOnInit(): void {
     this.loadConfig();
-    this.loadItems();
+    this.loadItems();      
   }
+  //#endregion
+
+  loadConfig() {
+    this.loadColumns();
+    this.privateActions.subscribe(action => {
+      this.onAction.emit(action);
+    });
+  }
+  loadItems() {
+    this.dataItems = undefined;
+    this.isLoading = true;
+    return this.config.obs?.pipe(
+      tap(res => {
+        this.dataItems = res;
+        this.onAction.emit({ key: 'loaded-items', item: res })
+      })
+    ).subscribe(()=> this.isLoading = false);
+  }
+  //#endregion
 
   onClickOrder(column: TotsColumn) {
     if(!column.hasOrder){ return; }
@@ -53,25 +74,6 @@ export class TotsTableComponent implements OnInit {
 
   onPageChange(event: PageEvent) {
     this.onAction.emit({ key: 'page-change', item: event });
-  }
-
-  loadItems() {
-    this.dataItems = undefined;
-    this.isLoading = true;
-    return this.config.obs?.pipe(
-      tap(res => {
-        this.dataItems = res;
-        this.onAction.emit({ key: 'loaded-items', item: res })
-      })
-    ).subscribe(res => this.isLoading = false);
-  }
-
-  loadConfig() {
-    this.loadColumns();
-
-    this.privateActions.subscribe(action => {
-      this.onAction.emit(action);
-    });
   }
 
   loadColumns() {
