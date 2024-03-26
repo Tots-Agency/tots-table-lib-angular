@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { Subject, tap } from 'rxjs';
 import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
+import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
 
 @Component({
   selector: 'tots-table',
@@ -17,18 +18,22 @@ export class TotsTableComponent implements OnInit {
   @Input() pageIndex: number = 0;
   @Input() pageSize: number = 50;
   @Input() hasPagination: boolean = true;
-  @Input() messageNotFound: string = "No results found, please try with other search terms";
+  @Input() messageNotFound! : string;
 
   @Output() onAction = new EventEmitter<TotsActionTable>();
   privateActions = new Subject<TotsActionTable>();
 
   isLoading = true;
+  firstLoad = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
 
   constructor(
+    @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
     protected changeDectetor: ChangeDetectorRef
-  ) {}
+  ) {
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
+  }
 
   ngOnInit(): void {
     this.loadConfig();
@@ -52,11 +57,15 @@ export class TotsTableComponent implements OnInit {
   }
 
   loadItems() {
-    this.dataItems = undefined;
     this.isLoading = true;
     return this.config.obs?.pipe(tap(res => this.dataItems = res))
     .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))
-    .subscribe(res => this.isLoading = false);
+    .subscribe(()=> this.stopLoading());
+  }
+
+  private stopLoading() {
+    this.isLoading = false;
+    this.firstLoad = false;
   }
 
   loadConfig() {

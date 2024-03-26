@@ -21,7 +21,13 @@
         </ng-container>
     </table>
 
-    <div *ngIf="isLoading" class="tots-table-loading"><mat-spinner [diameter]="50"></mat-spinner></div>
+    <div *ngIf="isLoading && firstLoad" class="tots-table-loading">
+        <tots-loading-animation-renderer></tots-loading-animation-renderer>
+    </div>
+
+    <div class="tots-table-bar-loading">
+        <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'"></mat-progress-bar>
+    </div>
 
     <!-- Paginator -->
     <mat-paginator *ngIf="dataItems && dataItems.data.length > 0 && hasPagination" [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="onPageChange($event)"></mat-paginator>

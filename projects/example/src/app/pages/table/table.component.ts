@@ -89,7 +89,8 @@ export class TableComponent implements OnInit {
     ];
 
     let data = new TotsListResponse();
-    data.data = this.items;
+    //data.data = this.items;
+    data.data = [];
 
     this.config.obs = of(data).pipe(delay(1000));
   }
