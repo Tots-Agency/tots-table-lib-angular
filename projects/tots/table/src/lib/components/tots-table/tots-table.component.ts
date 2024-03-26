@@ -32,7 +32,7 @@ export class TotsTableComponent implements OnInit {
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
     protected changeDectetor: ChangeDetectorRef
   ) {
-    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound || "No results found, please try with other search terms";
   }
 
   ngOnInit(): void {
