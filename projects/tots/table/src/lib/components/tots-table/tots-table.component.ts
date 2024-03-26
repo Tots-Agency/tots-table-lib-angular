@@ -57,7 +57,6 @@ export class TotsTableComponent implements OnInit {
   }
 
   loadItems() {
-    this.dataItems = undefined;
     this.isLoading = true;
     return this.config.obs?.pipe(tap(res => this.dataItems = res))
     .pipe(tap(res => this.onAction.emit({ key: 'loaded-items', item: undefined })))
