@@ -1,8 +1,10 @@
 import { Injectable, InjectionToken } from "@angular/core";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 export const TOTS_TABLE_DEFAULT_CONFIG = new InjectionToken<TotsTableDefaultConfig>('tots_table_default_config');
 
 @Injectable()
 export class TotsTableDefaultConfig {
-  messageNotFound : string =  "No results found, please try with other search terms";
+  messageNotFound? : string =  "No results found, please try with other search terms";
+  loadingComponent? : any;
 }
