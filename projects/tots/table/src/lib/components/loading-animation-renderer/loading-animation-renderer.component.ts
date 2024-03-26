@@ -11,7 +11,6 @@ export class LoadingAnimationRendererComponent implements OnDestroy {
 
 	@ViewChild('loadingComponentContainer', { read: ViewContainerRef }) loadingComponentContainer! : ViewContainerRef;
   loadingComponent! : ComponentRef<any>;
-  firstLoad = true;
 
   //#region Setup
   constructor(
