@@ -24,6 +24,7 @@ export class TotsTableComponent implements OnInit {
   privateActions = new Subject<TotsActionTable>();
 
   isLoading = true;
+  firstLoad = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
 
@@ -49,14 +50,18 @@ export class TotsTableComponent implements OnInit {
     });
   }
   loadItems() {
-    this.dataItems = undefined;
     this.isLoading = true;
     return this.config.obs?.pipe(
       tap(res => {
         this.dataItems = res;
         this.onAction.emit({ key: 'loaded-items', item: res })
       })
-    ).subscribe(()=> this.isLoading = false);
+    ).subscribe(()=> this.stopLoading());
+  }
+
+  private stopLoading() {
+    this.isLoading = false;
+    this.firstLoad = false;
   }
   //#endregion
 
