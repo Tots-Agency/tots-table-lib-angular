@@ -6,6 +6,7 @@ import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'tots-table',
@@ -23,10 +24,12 @@ export class TotsTableComponent implements OnInit {
   @Output() onAction = new EventEmitter<TotsActionTable>();
   privateActions = new Subject<TotsActionTable>();
 
-  isLoading = true;
-  firstLoad = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
+
+  isLoading = true;
+  firstLoad = true;
+  matColor : ThemePalette;
 
   //#region Setup
   constructor(
@@ -34,6 +37,7 @@ export class TotsTableComponent implements OnInit {
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
   ) {
     this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
+    this.matColor = this.totsTableDefaultConfig.matColor;
   }
 
   //#region Lifetime cycles

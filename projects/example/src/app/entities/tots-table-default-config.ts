@@ -3,5 +3,6 @@ import { CustomLoadingComponent } from "../components/custom-loading/custom-load
 
 export const totsTableDefaultConfig : TotsTableDefaultConfig = {
   messageNotFound: "Mensaje personalizado. No hay elementos",
-  loadingComponent: CustomLoadingComponent
+  //loadingComponent: CustomLoadingComponent,
+  matColor: "warn"
 }
