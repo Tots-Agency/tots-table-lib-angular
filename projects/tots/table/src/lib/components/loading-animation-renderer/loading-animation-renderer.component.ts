@@ -32,6 +32,7 @@ export class LoadingAnimationRendererComponent implements OnDestroy {
       this.loadingComponent = this.viewContainerRef.createComponent(MatProgressSpinner);
       this.loadingComponent.instance.diameter = 50;
       this.loadingComponent.instance.mode = "indeterminate";
+      this.loadingComponent.instance.color = this.totsTableDefaultConfig.matColor;
     }
   }
   //#endregion
