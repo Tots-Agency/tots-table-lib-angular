@@ -5,7 +5,36 @@ export const TOTS_TABLE_DEFAULT_CONFIG = new InjectionToken<TotsTableDefaultConf
 
 @Injectable()
 export class TotsTableDefaultConfig {
-  messageNotFound? : string =  "No results found, please try with other search terms";
+  /**
+   * Message shown when there are no entries in the table
+   */
+  messageNotFound? : string;
+
+  /**
+   * Replaces default mat spinner
+   */
   loadingComponent? : any;
-  matColor? : ThemePalette = "primary";
+
+  /**
+   * Applies to the default initial loading spinner and to the upper and/or lower progress bars
+   */
+  matColor? : ThemePalette;
+
+  /**
+   * @default false
+   */
+  upperPaginator? : boolean;
+  /**
+   * @default true
+   */
+  lowerPaginator? : boolean;
+
+  /**
+   * @default false
+   */
+  upperProgressBar? : boolean;
+  /**
+   * @default true
+   */
+  lowerProgressBar? : boolean;
 }
