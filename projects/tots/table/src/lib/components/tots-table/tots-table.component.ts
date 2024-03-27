@@ -31,13 +31,22 @@ export class TotsTableComponent implements OnInit {
   firstLoad = true;
   matColor : ThemePalette;
 
+  upperPaginator : boolean;
+  lowerPaginator : boolean;
+  upperProgressBar : boolean;
+  lowerProgressBar : boolean;
+
   //#region Setup
   constructor(
     protected changeDectetor: ChangeDetectorRef,
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
   ) {
-    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound!;
-    this.matColor = this.totsTableDefaultConfig.matColor;
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound ? this.totsTableDefaultConfig.messageNotFound : "No results found, please try with other search terms";
+    this.matColor = this.totsTableDefaultConfig.matColor != undefined ? this.totsTableDefaultConfig.matColor : "primary";
+    this.upperPaginator = this.totsTableDefaultConfig.upperPaginator != undefined ? this.totsTableDefaultConfig.upperPaginator : false;
+    this.lowerPaginator = this.totsTableDefaultConfig.lowerPaginator != undefined ? this.totsTableDefaultConfig.lowerPaginator : true;
+    this.upperProgressBar = this.totsTableDefaultConfig.upperProgressBar != undefined ? this.totsTableDefaultConfig.upperProgressBar : false;
+    this.lowerProgressBar = this.totsTableDefaultConfig.lowerProgressBar != undefined ? this.totsTableDefaultConfig.lowerProgressBar : true;
   }
 
   //#region Lifetime cycles
