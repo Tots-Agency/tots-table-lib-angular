@@ -1,7 +1,6 @@
 import { Component, ComponentRef, Inject, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'tots-loading-animation-renderer',
