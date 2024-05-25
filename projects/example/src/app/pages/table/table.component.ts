@@ -117,6 +117,7 @@ export class TableComponent implements OnInit {
 
   loadConfigLocal() {
     this.configLocal.id = 'table-local-example';
+    this.configLocal.searchKeys = ['title', 'subtitle'];
     this.configLocal.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',', prepend: "Prepend" } },
@@ -130,5 +131,9 @@ export class TableComponent implements OnInit {
     data.data = this.items;
 
     this.configLocal.obs = of(data).pipe(delay(1000));
+  }
+
+  clickTestLocalSearch() {
+    this.tableCompLocal.onSearch('Item 12');
   }
 }

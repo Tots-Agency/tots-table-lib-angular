@@ -4,5 +4,5 @@ import { Observable } from "rxjs";
 import { TotsTableConfig } from "./tots-table-config";
 
 export class TotsTableLocalConfig extends TotsTableConfig {
-
+  searchKeys: Array<string> = [];
 }

@@ -4,6 +4,7 @@ import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsListResponse } from '@tots/core';
 import { Observable, tap } from 'rxjs';
 import { TotsTableComponent } from '../tots-table/tots-table.component';
+import { TotsColumn } from '../../entities/tots-column';
 
 @Component({
   selector: 'tots-table-local',
@@ -21,8 +22,12 @@ export class TotsTableLocalComponent {
   @Output() onAction = new EventEmitter<TotsActionTable>();
 
   dataItems?: Array<any>;
+  dataTotals = 0;
   page: number = 1;
   perPage: number = 50;
+  orderKey?: string;
+  orderType?: string;
+  searchQuery?: string;
 
   ngOnInit(): void {
     this.loadConfig();
@@ -33,20 +38,58 @@ export class TotsTableLocalComponent {
       return;
     }
 
+    let items = [...this.dataItems];
+
+    if(this.orderKey != undefined){
+      if(this.orderType == 'asc'){
+        items = items.sort((a,b) => (a[this.orderKey!] > b[this.orderKey!]) ? 1 : ((b[this.orderKey!] > a[this.orderKey!]) ? -1 : 0))
+      } else {
+        items = items.sort((a,b) => (a[this.orderKey!] < b[this.orderKey!]) ? 1 : ((b[this.orderKey!] < a[this.orderKey!]) ? -1 : 0))
+      }
+    }
+
+    // Aplicar busqueda
+    if(this.searchQuery != undefined && this.searchQuery != ''){
+      items = items.filter(item => {
+        let isMatch = false;
+        this.configTable.searchKeys.forEach(key => {
+          if(item[key] != undefined && item[key].toString().toLowerCase().includes(this.searchQuery!.toLowerCase())){
+            isMatch = true;
+          }
+        });
+        return isMatch;
+      });
+      this.dataTotals = items.length;
+    } else {
+      this.dataTotals = this.dataItems!.length;
+    }
+
     let startIndex = (this.page - 1) * this.perPage;
     let endIndex = startIndex + this.perPage;
-    this.setDataItems(this.generateListResponse(this.dataItems.slice(startIndex, endIndex)));
+    this.setDataItems(this.generateListResponse(items.slice(startIndex, endIndex)));
+  }
+
+  onPagination(action: TotsActionTable) {
+    this.perPage = action.item.pageSize;
+    if(this.isPaginationStartIndexInZero){
+      this.page = action.item.pageIndex;
+    } else {
+      this.page = action.item.pageIndex + 1;
+    }
+    this.onFilterItems();
+  }
+
+  onOrder(column: TotsColumn) {
+    this.orderType = column.order;
+    this.orderKey = column.field_key as string;
+    this.onFilterItems();
   }
 
   onTableAction(action: TotsActionTable) {
     if(action.key == 'page-change'){
-      this.perPage = action.item.pageSize;
-      if(this.isPaginationStartIndexInZero){
-        this.page = action.item.pageIndex;
-      } else {
-        this.page = action.item.pageIndex + 1;
-      }
-      this.onFilterItems();
+      this.onPagination(action);
+    } else if(action.key == 'click-order'){
+      this.onOrder(action.item);
     }
 
     this.onAction.emit(action);
@@ -79,9 +122,15 @@ export class TotsTableLocalComponent {
     this.configTable.obs = obs.pipe(tap(res => this.dataItems = res.data));
   }
 
+  onSearch(query: string) {
+    this.page = 1;
+    this.searchQuery = query;
+    this.onFilterItems();
+  }
+
   generateListResponse(items: Array<any>): TotsListResponse<any> {
     // calcular la iultima pagina
-    let lastPage = Math.ceil(this.dataItems!.length / this.perPage);
+    let lastPage = Math.ceil(this.dataTotals / this.perPage);
 
     return {
       current_page: this.page,
@@ -94,7 +143,7 @@ export class TotsTableLocalComponent {
       per_page: this.perPage,
       prev_page_url: '',
       to: '',
-      total: this.dataItems!.length,
+      total: this.dataTotals,
       data: items
     };
   }
