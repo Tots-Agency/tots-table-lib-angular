@@ -10,6 +10,7 @@ export * from './lib/entities/tots-table-config';
 export * from './lib/entities/tots-table-default-config';
 export * from './lib/entities/tots-action-table';
 export * from './lib/entities/tots-table-api-config';
+export * from './lib/entities/tots-table-local-config';
 
 /**
  * Helpers
@@ -39,6 +40,7 @@ export * from './lib/columns/balance-currency-icon-column/balance-currency-icon-
  */
 export * from './lib/components/tots-table/tots-table.component';
 export * from './lib/components/tots-table-api/tots-table-api.component';
+export * from './lib/components/tots-table-local/tots-table-local.component';
 
 /**
  * Modules

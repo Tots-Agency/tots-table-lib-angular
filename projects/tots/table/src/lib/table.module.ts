@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 /** Components */
 import { TotsTableComponent } from './components/tots-table/tots-table.component';
 import { TotsTableApiComponent } from './components/tots-table-api/tots-table-api.component';
+import { TotsTableLocalComponent } from './components/tots-table-local/tots-table-local.component';
 
 /** Columns */
 import { BasePrintColumnComponent } from './columns/base-print-column/base-print-column.component';
@@ -51,7 +52,8 @@ import { LoadingAnimationRendererComponent } from './components/loading-animatio
     BalanceCurrencyColumnComponent,
     StatusIconColumnComponent,
     BalanceCurrencyIconColumnComponent,
-    LoadingAnimationRendererComponent
+    LoadingAnimationRendererComponent,
+    TotsTableLocalComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { LoadingAnimationRendererComponent } from './components/loading-animatio
   ],
   exports: [
     TotsTableComponent,
-    TotsTableApiComponent
+    TotsTableApiComponent,
+    TotsTableLocalComponent,
   ],
   providers: [
     {
