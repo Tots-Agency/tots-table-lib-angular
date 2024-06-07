@@ -34,6 +34,7 @@ export * from './lib/columns/status-column/status-column.component';
 export * from './lib/columns/balance-currency-column/balance-currency-column.component';
 export * from './lib/columns/status-icon-column/status-icon-column.component';
 export * from './lib/columns/balance-currency-icon-column/balance-currency-icon-column.component';
+export * from './lib/columns/link-column/link-column.component';
 
 /**
  * Components
