@@ -32,6 +32,7 @@ import { BalanceCurrencyIconColumnComponent } from './columns/balance-currency-i
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from './entities/tots-table-default-config';
 import { LoadingAnimationRendererComponent } from './components/loading-animation-renderer/loading-animation-renderer.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { LinkColumnComponent } from './columns/link-column/link-column.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     BalanceCurrencyColumnComponent,
     StatusIconColumnComponent,
     BalanceCurrencyIconColumnComponent,
-    LoadingAnimationRendererComponent
+    LoadingAnimationRendererComponent,
+    LinkColumnComponent
   ],
   imports: [
     CommonModule,

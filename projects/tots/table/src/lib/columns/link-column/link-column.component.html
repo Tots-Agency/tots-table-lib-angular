@@ -1,0 +1,6 @@
+<div>
+    <a *ngIf="getItemValue()" [href]="getItemValue()" [target]="target">
+        {{ linkCaption }}
+        <mat-icon *ngIf="target == '_blank'">open_in_new</mat-icon>
+    </a>
+</div>
