@@ -19,7 +19,7 @@ import { TotsTwoStringColumn } from 'projects/tots/table/src/lib/column-factorie
 import { TotsColumnOption } from 'projects/tots/table/src/lib/entities/tots-column-option';
 import { TotsMoreMenuItem } from 'projects/tots/table/src/lib/entities/tots-more-menu-item';
 import { TotsStatusIconColumnOption } from 'projects/tots/table/src/lib/entities/tots-status-icon-column-option';
-import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsLinkColumn, TotsTableComponent, TotsTableConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -37,10 +37,10 @@ export class TableComponent implements OnInit {
   private id = 0;
 
   items = [
-    { id: this.id++, title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500 },
-    { id: this.id++, title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
+    { id: this.id++, title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: this.id++, title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro', website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
     { id: this.id++, title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { id: this.id++, title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada" },
+    { id: this.id++, title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada", website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
     { id: this.id++, title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
   ];
 
@@ -163,7 +163,8 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
 
     this.config.columns = [
-      new TotsStringColumn("title", "title", "Título", false, undefined, "Prepend"),
+      new TotsStringColumn("title", "title", "Título"),
+      new TotsLinkColumn("website", "website", "Título", undefined, undefined, "Ver"),
     ];
 
     let data = new TotsListResponse();
