@@ -11,11 +11,11 @@ import { TotsTableModule } from '@tots/table';
 
 /** Columns */
 import { InputColumn } from './columns/input-column/input-column.component';
+import { SelectColumnComponent } from './columns/select-column/select-column.component';
 
 /** Components */
 import { TotsTableFullGroupComponent } from './components/tots-table-full-group/tots-table-full-group.component';
-
-
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -26,6 +26,7 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
 
     /** Columns */
     InputColumn,
+    SelectColumnComponent,
 
     /** Components */
     TotsTableFullGroupComponent
@@ -38,6 +39,7 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
     /** Angular Material */
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
 
     /** Tots Libraries */
     TotsTableModule

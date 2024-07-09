@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
-import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
+import { InputColumn, SelectColumnComponent } from 'projects/tots/editable-columns/src/public-api';
 import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TotsTableLocalComponent, TotsTableLocalConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
   configLocal = new TotsTableLocalConfig();
 
   ngOnInit(): void {
-    this.loadConfig();
+    this.loadConfig2();
     this.loadConfigLocal();
   }
 
@@ -113,6 +113,29 @@ export class TableComponent implements OnInit {
     //data.data = [];
 
     this.config.obs = of(data).pipe(delay(1000));
+  }
+
+  loadConfig2() {
+    this.config.id = 'table-example';
+    this.config.columns = [
+      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required] } },
+      { key: 'active', component: SelectColumnComponent, title: 'Activo', field_key: 'active',
+        extra: {
+          field_select_key: 'id',
+          field_print_key: 'name',
+          options: [
+            { id: 1, name: 'Activo A' },
+            { id: 0, name: 'Inactivo B' },
+          ],
+          validators: [Validators.required]
+        }
+      },
+    ];
+
+    let data = new TotsListResponse();
+    data.data = this.items;
+
+    this.config.obs = of(data).pipe(delay(200));
   }
 
   loadConfigLocal() {
