@@ -6,7 +6,7 @@ import { TotsDateColumn } from 'projects/tots/date-column/src/lib/column-factori
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { TotsInputColumn } from 'projects/tots/editable-columns/src/lib/column-factories/tots-input-column';
 import { TotsValidator } from 'projects/tots/editable-columns/src/lib/entities/tots-validator';
-import { InputColumnComponent, TotsTableFullGroupComponent } from 'projects/tots/editable-columns/src/public-api';
+import { InputColumnComponent, TotsSelectColumn, TotsTableFullGroupComponent } from 'projects/tots/editable-columns/src/public-api';
 import { TotsBalanceColumn } from 'projects/tots/table/src/lib/column-factories/tots-balance-column';
 import { TotsBooleanColumn } from 'projects/tots/table/src/lib/column-factories/tots-boolean-column';
 import { TotsCheckboxColumn } from 'projects/tots/table/src/lib/column-factories/tots-checkbox-column';
@@ -163,8 +163,15 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
 
     this.config.columns = [
-      new TotsStringColumn("title", "title", "Título"),
-      new TotsLinkColumn("website", "website", "Título", undefined, undefined, "Ver"),
+      new TotsInputColumn("title", "title", [
+        new TotsValidator(Validators.required, "required", "Requerido"),
+      ], "Title input", this.formGroup, "Ingrese un título"),
+      new TotsSelectColumn("active", "active", [
+        new TotsColumnOption(1, "Activo"),
+        new TotsColumnOption(0, "Inactivo"),
+      ], [
+        new TotsValidator(Validators.max(0), "max", "Max 0")
+      ], "Active", this.formGroup, "Label", "Placeholder")
     ];
 
     let data = new TotsListResponse();
