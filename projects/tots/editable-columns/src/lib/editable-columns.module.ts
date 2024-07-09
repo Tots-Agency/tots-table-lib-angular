@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /** Angular Material */
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 /** Tots Libraries */
 import { TotsTableModule } from '@tots/table';
 
 /** Columns */
 import { InputColumnComponent } from './columns/input-column/input-column.component';
+import { SelectColumnComponent } from './columns/select-column/select-column.component';
 
 /** Components */
 import { TotsTableFullGroupComponent } from './components/tots-table-full-group/tots-table-full-group.component';
@@ -19,13 +21,11 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
 
 
 
-
-
 @NgModule({
   declarations: [
-
     /** Columns */
     InputColumnComponent,
+    SelectColumnComponent,
 
     /** Components */
     TotsTableFullGroupComponent
@@ -38,6 +38,7 @@ import { TotsTableFullGroupComponent } from './components/tots-table-full-group/
     /** Angular Material */
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
 
     /** Tots Libraries */
     TotsTableModule
