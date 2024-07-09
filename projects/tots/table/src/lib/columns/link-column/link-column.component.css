@@ -1,0 +1,13 @@
+a {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	text-decoration: none;
+
+	mat-icon {
+		font-size: 14px;
+		line-height: 14px;
+		width: 14px;
+		height: 14px;
+	}
+}
