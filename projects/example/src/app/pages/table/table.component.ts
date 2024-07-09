@@ -129,7 +129,7 @@ export class TableComponent implements OnInit {
             { id: 1, name: 'Activo A' },
             { id: 0, name: 'Inactivo B' },
           ],
-          validators: [Validators.required]
+          validators: [Validators.max(0)]
         }
       },
     ];
