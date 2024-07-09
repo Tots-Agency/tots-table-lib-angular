@@ -6,6 +6,7 @@
  * Columns
  */
 export * from './lib/columns/input-column/input-column.component';
+export * from './lib/columns/select-column/select-column.component';
 
 /**
  * Components

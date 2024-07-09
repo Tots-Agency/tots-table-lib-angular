@@ -1,0 +1,11 @@
+<mat-form-field class="{{getClasses()}}" [appearance]="getAppearance()" (click)="$event.stopPropagation()">
+  
+  <mat-label *ngIf="getLabel()"> {{ getLabel() }} </mat-label>
+  <mat-select [formControl]="input" [placeholder]="getPlaceholder()">
+    <mat-option *ngFor="let option of options; let index=index;" [value]="getOptionValue(option)">
+      {{ displayOption(option) }}
+    </mat-option>
+  </mat-select>
+  <mat-hint *ngIf="getCaption()" [align]="'end'"> {{getCaption()}} </mat-hint>
+  <mat-error *ngIf="hasError()">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
