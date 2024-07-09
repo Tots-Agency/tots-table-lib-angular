@@ -37,6 +37,7 @@ export * from './lib/columns/status-column/status-column.component';
 export * from './lib/columns/balance-currency-column/balance-currency-column.component';
 export * from './lib/columns/status-icon-column/status-icon-column.component';
 export * from './lib/columns/balance-currency-icon-column/balance-currency-icon-column.component';
+export * from './lib/columns/link-column/link-column.component';
 
 /**
  * Factories
@@ -47,6 +48,7 @@ export * from './lib/column-factories/tots-boolean-column';
 export * from './lib/column-factories/tots-checkbox-column';
 export * from './lib/column-factories/tots-currency-column';
 export * from './lib/column-factories/tots-icon-button-column';
+export * from './lib/column-factories/tots-link-column';
 export * from './lib/column-factories/tots-more-menu-column';
 export * from './lib/column-factories/tots-option-column';
 export * from './lib/column-factories/tots-status-column';
