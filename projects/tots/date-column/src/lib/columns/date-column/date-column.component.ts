@@ -13,7 +13,7 @@ export class DateColumnComponent extends TotsBaseColumnComponent {
     let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
 
     if(value == undefined || value == null || value == ''){
-      return '';
+      return '-';
     }
 
     let date;
