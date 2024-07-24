@@ -1,0 +1,8 @@
+<span [ngClass]="{
+    'tots-number-column-positive': getItemValue() > 0,
+    'tots-number-column-negative': getItemValue() < 0
+}">
+	<span class="tots-number-column-prepend" *ngIf="column.extra?.prepend">{{ column.extra?.prepend }}</span>
+    {{ getItemValue() | number }}
+	<span class="tots-number-column-append" *ngIf="column.extra?.append">{{ column.extra?.append }}</span>
+</span>
