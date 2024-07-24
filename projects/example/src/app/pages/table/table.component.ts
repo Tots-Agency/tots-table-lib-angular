@@ -12,6 +12,7 @@ import { TotsBooleanColumn } from 'projects/tots/table/src/lib/column-factories/
 import { TotsCheckboxColumn } from 'projects/tots/table/src/lib/column-factories/tots-checkbox-column';
 import { TotsIconButtonColumn } from 'projects/tots/table/src/lib/column-factories/tots-icon-button-column';
 import { TotsMoreMenuColumn } from 'projects/tots/table/src/lib/column-factories/tots-more-menu-column';
+import { TotsNumberColumn } from 'projects/tots/table/src/lib/column-factories/tots-number-column';
 import { TotsOptionColumn } from 'projects/tots/table/src/lib/column-factories/tots-option-column';
 import { TotsStatusIconColumn } from 'projects/tots/table/src/lib/column-factories/tots-status-icon-column';
 import { TotsStringColumn } from 'projects/tots/table/src/lib/column-factories/tots-string-column';
@@ -36,12 +37,17 @@ export class TableComponent implements OnInit {
 
   private id = 0;
 
-  items = [
-    { id: this.id++, title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { id: this.id++, title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro', website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { id: this.id++, title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { id: this.id++, title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green', edit_field: "dsdada", website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { id: this.id++, title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01' },
+  protected items = [
+    { id: 1, title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, debit: 1000, credit: 500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: 2, title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, debit: 500, credit: 1000, edit_field: 'Pedro' },
+    { id: 3, title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 10500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: 4, title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 10500, classCustom: 'tots-cell-item-green' },
+    { id: 5, title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: 6, title: 'Item 6', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 1020 },
+    { id: 7, title: 'Item 7', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 2662100, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: 8, title: 'Item 8', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 15080 },
+    { id: 9, title: 'Item 9', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 12400, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { id: 10, title: 'Item 10', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 608700 },
   ];
 
   formGroup = new FormGroup({});
@@ -163,15 +169,7 @@ export class TableComponent implements OnInit {
     this.config.id = 'table-example';
 
     this.config.columns = [
-      new TotsInputColumn("title", "title", [
-        new TotsValidator(Validators.required, "required", "Requerido"),
-      ], "Title input", this.formGroup, "Ingrese un título"),
-      new TotsSelectColumn("active", "active", [
-        new TotsColumnOption(1, "Activo"),
-        new TotsColumnOption(0, "Inactivo"),
-      ], [
-        new TotsValidator(Validators.max(0), "max", "Max 0")
-      ], "Active", this.formGroup, "Label", "Placeholder")
+      new TotsNumberColumn("number", "amount", "Number", false, undefined, "p", "a")
     ];
 
     let data = new TotsListResponse();
