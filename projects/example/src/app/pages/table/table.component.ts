@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
-import { InputColumn, SelectColumnComponent } from 'projects/tots/editable-columns/src/public-api';
-import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, LinkColumnComponent, MoreMenuColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TotsTableLocalComponent, TotsTableLocalConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
+import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, LinkColumnComponent, MoreMenuColumnComponent, NumberColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TotsTableLocalComponent, TotsTableLocalConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -18,27 +18,16 @@ export class TableComponent implements OnInit {
   config = new TotsTableConfig();
 
   items = [
-    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 1000, credit: 500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', debit: 500, credit: 1000, edit_field: 'Pedro' },
-    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01', website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', classCustom: 'tots-cell-item-green' },
-    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 1000, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { title: 'Item 6', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 100 },
-    { title: 'Item 7', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 200, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { title: 'Item 8', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 1500 },
-    { title: 'Item 9', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 1200, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
-    { title: 'Item 10', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 6000 },
-    { title: 'Item 11', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 12', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 13', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 14', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 15', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 16', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 17', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 18', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 19', active: 0, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 20', active: 1, subtitle: 'AB232', date: '2021-01-01' },
-    { title: 'Item 21', active: 0, subtitle: 'AB232', date: '2021-01-01' },
+    { title: 'Item 1, pedro', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, debit: 1000, credit: 500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { title: 'Item 2', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, debit: 500, credit: 1000, edit_field: 'Pedro' },
+    { title: 'Item 3', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 10500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { title: 'Item 4', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 10500, classCustom: 'tots-cell-item-green' },
+    { title: 'Item 5', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 10500, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { title: 'Item 6', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 1020 },
+    { title: 'Item 7', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 2662100, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { title: 'Item 8', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 15080 },
+    { title: 'Item 9', active: 0, subtitle: 'AB232', date: '2021-01-01', amount: 12400, website: "https://www.youtube.com/watch?v=5kMsykEAcjg" },
+    { title: 'Item 10', active: 1, subtitle: 'AB232', date: '2021-01-01', amount: 608700 },
   ];
 
   formGroup = new FormGroup({});
@@ -120,16 +109,14 @@ export class TableComponent implements OnInit {
   loadMiniConfig() {
     this.config.id = 'table-example';
     this.config.columns = [
-      { key: 'edit_field', component: InputColumn, title: 'Edit', field_key: 'edit_field', extra: { validators: [Validators.required] } },
-      { key: 'active', component: SelectColumnComponent, title: 'Activo', field_key: 'active',
+      {
+        key: 'amount',
+        component: NumberColumnComponent,
+        title: 'Number',
+        field_key: 'amount',
         extra: {
-          field_select_key: 'id',
-          field_print_key: 'name',
-          options: [
-            { id: 1, name: 'Activo A' },
-            { id: 0, name: 'Inactivo B' },
-          ],
-          validators: [Validators.max(0)]
+          prepend: "p",
+          append: "a"
         }
       },
     ];
