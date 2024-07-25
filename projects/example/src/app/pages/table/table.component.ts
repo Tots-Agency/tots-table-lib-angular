@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
@@ -55,12 +56,14 @@ export class TableComponent implements OnInit {
 
   onTableAction(action: TotsActionTable) {
     console.log(action);
-    if(action.key == 'click-order'){
+    if (action.key == 'click-order') {
       this.onOrder(action.item);
-    }else if (action.key == 'select-item') {
+    } else if (action.key == 'select-item') {
       action.item.isSelected = true;
-    }else if (action.key == 'unselect-item') {
+    } else if (action.key == 'unselect-item') {
       action.item.isSelected = false;
+    } else if (action.key == "page-change") {
+      this.changePage(action.item);
     }
   }
 
@@ -148,4 +151,14 @@ export class TableComponent implements OnInit {
   clickTestLocalSearch() {
     this.tableCompLocal.onSearch('Item 12');
   }
+
+  private changePage(pageEvent:PageEvent) {
+    console.log(pageEvent);
+    let data = new TotsListResponse();
+    data.data = [...this.items];
+    data.total = 50;
+
+    this.config.obs = of(data).pipe(delay(2000));
+    this.tableComp.loadItems();
+	}
 }

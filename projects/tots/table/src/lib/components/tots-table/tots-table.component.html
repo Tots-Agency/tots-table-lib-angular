@@ -1,4 +1,19 @@
 <div class="tots-table-container {{config.classes}}">
+
+    <!-- #region Lower paginator -->
+    <ng-container *ngIf="upperPaginator && dataItems && dataItems.data.length > 0 && hasPagination">
+        <mat-paginator [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+    </ng-container>
+    <!-- #endregion -->
+
+    <!-- #region Lower progress bar -->
+    <ng-container *ngIf="upperProgressBar">
+        <div class="tots-table-bar-loading upper">
+            <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
+        </div>
+    </ng-container>
+    <!-- #endregion -->
+
     <table mat-table [dataSource]="dataItems != undefined ? dataItems!.data : []">
 
         <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.key" [stickyEnd]="column.extra?.stickyEnd ?? false">
@@ -21,14 +36,23 @@
         </ng-container>
     </table>
 
+    <!-- #region First loading animation -->
     <div *ngIf="isLoading && firstLoad" class="tots-table-loading">
         <tots-loading-animation-renderer></tots-loading-animation-renderer>
     </div>
+    <!-- #endregion -->
 
-    <div class="tots-table-bar-loading">
-        <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'"></mat-progress-bar>
-    </div>
+    <!-- #region Lower progress bar -->
+    <ng-container *ngIf="lowerProgressBar">
+        <div class="tots-table-bar-loading lower">
+            <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
+        </div>
+    </ng-container>
+    <!-- #endregion -->
 
-    <!-- Paginator -->
-    <mat-paginator *ngIf="dataItems && dataItems.data.length > 0 && hasPagination" [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="onPageChange($event)"></mat-paginator>
+    <!-- #region Lower paginator -->
+    <ng-container *ngIf="lowerPaginator && dataItems && dataItems.data.length > 0 && hasPagination">
+        <mat-paginator [pageIndex]="pageIndex-1" [length]="dataItems!.total" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+    </ng-container>
+    <!-- #endregion -->
 </div>
