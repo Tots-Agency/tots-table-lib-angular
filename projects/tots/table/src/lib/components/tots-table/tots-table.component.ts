@@ -6,6 +6,7 @@ import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'tots-table',
@@ -23,16 +24,28 @@ export class TotsTableComponent implements OnInit {
   @Output() onAction = new EventEmitter<TotsActionTable>();
   privateActions = new Subject<TotsActionTable>();
 
-  isLoading = true;
-  firstLoad = true;
   dataItems?: TotsListResponse<any>;
   displayColumns: Array<String> = [];
+
+  isLoading = true;
+  firstLoad = true;
+  matColor : ThemePalette;
+
+  upperPaginator : boolean;
+  lowerPaginator : boolean;
+  upperProgressBar : boolean;
+  lowerProgressBar : boolean;
 
   constructor(
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
     protected changeDectetor: ChangeDetectorRef
   ) {
-    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound || "No results found, please try with other search terms";
+    this.messageNotFound = this.totsTableDefaultConfig.messageNotFound ? this.totsTableDefaultConfig.messageNotFound : "No results found, please try with other search terms";
+    this.matColor = this.totsTableDefaultConfig.matColor != undefined ? this.totsTableDefaultConfig.matColor : "primary";
+    this.upperPaginator = this.totsTableDefaultConfig.upperPaginator != undefined ? this.totsTableDefaultConfig.upperPaginator : false;
+    this.lowerPaginator = this.totsTableDefaultConfig.lowerPaginator != undefined ? this.totsTableDefaultConfig.lowerPaginator : true;
+    this.upperProgressBar = this.totsTableDefaultConfig.upperProgressBar != undefined ? this.totsTableDefaultConfig.upperProgressBar : false;
+    this.lowerProgressBar = this.totsTableDefaultConfig.lowerProgressBar != undefined ? this.totsTableDefaultConfig.lowerProgressBar : true;
   }
 
   ngOnInit(): void {
