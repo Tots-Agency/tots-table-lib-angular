@@ -3,6 +3,6 @@
     'tots-number-column-negative': getItemValue() < 0
 }">
 	<span class="tots-number-column-prepend" *ngIf="column.extra?.prepend">{{ column.extra?.prepend }}</span>
-    {{ getItemValue() | number }}
+    {{ getItemValue() | number:"1.0-2" }}
 	<span class="tots-number-column-append" *ngIf="column.extra?.append">{{ column.extra?.append }}</span>
 </span>
