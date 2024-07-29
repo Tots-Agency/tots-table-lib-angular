@@ -25,11 +25,19 @@ export class TotsTableLocalComponent {
   dataTotals = 0;
   page: number = 1;
   perPage: number = 50;
-  orderKey?: string;
-  orderType?: string;
+  
+  @Input() initialOrderKey? : string;
+  @Input() initialOrderType? : "asc"|"desc";
+
+  private orderKey?: string;
+  private orderType?: "asc"|"desc";
+
   searchQuery?: string;
 
   ngOnInit(): void {
+    this.orderKey = this.initialOrderKey;
+    this.orderType = this.initialOrderType;
+    
     this.loadConfig();
   }
 
