@@ -7,9 +7,9 @@
     <!-- #endregion -->
 
     <!-- #region Lower progress bar -->
-    <ng-container *ngIf="upperProgressBar">
+    <ng-container *ngIf="upperProgressBar && !firstLoad">
         <div class="tots-table-bar-loading upper">
-            <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
+            <mat-progress-bar *ngIf="isLoading" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
         </div>
     </ng-container>
     <!-- #endregion -->
@@ -45,9 +45,9 @@
     <!-- #endregion -->
 
     <!-- #region Lower progress bar -->
-    <ng-container *ngIf="lowerProgressBar">
+    <ng-container *ngIf="lowerProgressBar && !firstLoad">
         <div class="tots-table-bar-loading lower">
-            <mat-progress-bar *ngIf="isLoading && !firstLoad" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
+            <mat-progress-bar *ngIf="isLoading" [mode]="'indeterminate'" [color]="matColor"></mat-progress-bar>
         </div>
     </ng-container>
     <!-- #endregion -->
