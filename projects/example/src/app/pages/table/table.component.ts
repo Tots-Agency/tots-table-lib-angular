@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { TotsListResponse } from '@tots/core';
 import { DateColumnComponent } from 'projects/tots/date-column/src/public-api';
 import { InputColumn } from 'projects/tots/editable-columns/src/public-api';
-import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, LinkColumnComponent, MoreMenuColumnComponent, NumberColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TotsTableLocalComponent, TotsTableLocalConfig, TwoStringColumnComponent } from 'projects/tots/table/src/public-api';
+import { BalanceCurrencyColumnComponent, BooleanColumnComponent, CheckboxColumnComponent, IconButtonColumnComponent, LinkColumnComponent, MoreMenuColumnComponent, NumberColumnComponent, OptionColumnComponent, StatusColumnComponent, StringColumnComponent, TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig, TotsTableLocalComponent, TotsTableLocalConfig, TwoStringColumnComponent, UserColumnComponent } from 'projects/tots/table/src/public-api';
 import { delay, of } from 'rxjs';
 
 @Component({
@@ -37,7 +37,8 @@ export class TableComponent implements OnInit {
   configLocal = new TotsTableLocalConfig();
 
   ngOnInit(): void {
-    this.loadMiniConfig();
+    //this.loadMiniConfig();
+    this.loadConfig();
     this.loadConfigLocal();
   }
 
@@ -72,6 +73,7 @@ export class TableComponent implements OnInit {
     this.config.columns = [
       { key: 'check', component: CheckboxColumnComponent, title: '', },
       { key: 'title', component: StringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: true, extra: { cutSeparator: ',', prepend: "Prepend" } },
+      { key: 'user-full', component: UserColumnComponent, title: 'User', field_key: 'title', hasOrder: true, extra: { field_firstname_key: 'title', field_lastname_key: 'subtitle', field_photo_key: ['user', 'photo'], is_clickable: true, click_event: 'click-user' } },
       { key: 'subtitle', component: TwoStringColumnComponent, title: 'Titulo', field_key: 'title', hasOrder: false, extra: { field_subtitle_key: 'subtitle' } },
       { key: 'include', component: BooleanColumnComponent, title: 'Activo', field_key: 'active', hasOrder: false },
       { key: 'home', component: IconButtonColumnComponent, title: 'asd', field_key: 'active', hasOrder: false, extra: { icon: 'home', action: 'click-home' } },

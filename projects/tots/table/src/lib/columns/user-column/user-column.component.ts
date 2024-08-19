@@ -9,6 +9,14 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 })
 export class UserColumnComponent extends TotsBaseColumnComponent {
 
+  onClick() {
+    if(!this.isClickable()){
+      return;
+    }
+
+    this.onAction.next({ key: this.getClickEvent(), item: this.item });
+  }
+
   getFirstname() {
     if(this.column.extra?.field_firstname_key){
       return TotsTableHelper.getItemValueByKey(this.item, this.column.extra.field_firstname_key);
@@ -51,5 +59,21 @@ export class UserColumnComponent extends TotsBaseColumnComponent {
     }
 
     return false;
+  }
+
+  isClickable() {
+    if(this.column.extra?.is_clickable){
+      return true;
+    }
+
+    return false;
+  }
+
+  getClickEvent() {
+    if(this.column.extra?.click_event){
+      return this.column.extra.click_event;
+    }
+
+    return 'click-column';
   }
 }
