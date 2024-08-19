@@ -1,4 +1,4 @@
-<div class="user-avatar-component" [ngClass]="{'box-clickable': isClickable()}" (click)="onClick(); $event.stopPropagation();">
+<div class="user-avatar-component" [ngClass]="{'box-clickable': isClickable()}" (click)="onClick($event);">
     <div class="avatar" *ngIf="getPhoto() != ''">
         <img mat-card-avatar [src]="getPhoto()" alt="{{ getFullname() }}" class="cover-image" onerror="this.src='/assets/img/user-avatar-empty.svg';">
     </div>

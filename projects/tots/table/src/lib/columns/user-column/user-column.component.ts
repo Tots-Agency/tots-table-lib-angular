@@ -9,12 +9,13 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 })
 export class UserColumnComponent extends TotsBaseColumnComponent {
 
-  onClick() {
+  onClick(event: any) {
     if(!this.isClickable()){
       return;
     }
 
     this.onAction.next({ key: this.getClickEvent(), item: this.item });
+    event.stopPropagation();
   }
 
   getFirstname() {
