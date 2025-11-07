@@ -5,7 +5,8 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 @Component({
   selector: 'tots-option-column',
   templateUrl: './option-column.component.html',
-  styleUrls: ['./option-column.component.css']
+  styleUrls: ['./option-column.component.css'],
+  standalone: false
 })
 export class OptionColumnComponent extends TotsBaseColumnComponent {
 

@@ -10,7 +10,6 @@ import { TotsDateColumnModule } from 'projects/tots/date-column/src/public-api';
 import { TotsEditableColumnsModule } from 'projects/tots/editable-columns/src/public-api';
 import { totsTableDefaultConfig } from './entities/tots-table-default-config';
 import { CustomLoadingComponent } from './components/custom-loading/custom-loading.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     TotsTableModule,
     TotsDateColumnModule,
     TotsEditableColumnsModule,

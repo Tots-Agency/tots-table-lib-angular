@@ -5,7 +5,8 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 @Component({
   selector: 'tots-two-string-column',
   templateUrl: './two-string-column.component.html',
-  styleUrls: ['./two-string-column.component.css']
+  styleUrls: ['./two-string-column.component.css'],
+  standalone: false
 })
 export class TwoStringColumnComponent extends TotsBaseColumnComponent {
 

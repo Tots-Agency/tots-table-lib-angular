@@ -5,7 +5,8 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 @Component({
   selector: 'tots-loading-animation-renderer',
   templateUrl: './loading-animation-renderer.component.html',
-  styleUrls: ['./loading-animation-renderer.component.scss']
+  styleUrls: ['./loading-animation-renderer.component.scss'],
+  standalone: false
 })
 export class LoadingAnimationRendererComponent implements OnDestroy {
 

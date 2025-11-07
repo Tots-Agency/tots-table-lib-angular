@@ -4,7 +4,8 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 @Component({
 	selector: 'tots-link-column',
 	templateUrl: './link-column.component.html',
-	styleUrls: ['./link-column.component.css']
+	styleUrls: ['./link-column.component.css'],
+	standalone: false
 })
 export class LinkColumnComponent extends TotsBaseColumnComponent implements OnInit {
 

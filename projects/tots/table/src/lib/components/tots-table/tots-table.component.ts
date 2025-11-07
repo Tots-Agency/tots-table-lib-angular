@@ -6,12 +6,12 @@ import { TotsActionTable } from '../../entities/tots-action-table';
 import { TotsColumn } from '../../entities/tots-column';
 import { TotsTableConfig } from '../../entities/tots-table-config';
 import { TOTS_TABLE_DEFAULT_CONFIG, TotsTableDefaultConfig } from '../../entities/tots-table-default-config';
-import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'tots-table',
   templateUrl: './tots-table.component.html',
-  styleUrls: ['./tots-table.component.scss']
+  styleUrls: ['./tots-table.component.scss'],
+  standalone: false
 })
 export class TotsTableComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class TotsTableComponent implements OnInit {
 
   isLoading = true;
   firstLoad = true;
-  matColor : ThemePalette;
+	protected matColor : string;
 
   upperPaginator : boolean;
   lowerPaginator : boolean;
@@ -42,7 +42,7 @@ export class TotsTableComponent implements OnInit {
     @Inject(TOTS_TABLE_DEFAULT_CONFIG) private totsTableDefaultConfig : TotsTableDefaultConfig,
   ) {
     this.messageNotFound = this.totsTableDefaultConfig.messageNotFound ? this.totsTableDefaultConfig.messageNotFound : "No results found, please try with other search terms";
-    this.matColor = this.totsTableDefaultConfig.matColor != undefined ? this.totsTableDefaultConfig.matColor : "primary";
+    this.matColor = this.totsTableDefaultConfig.matColor || "primary";
     this.upperPaginator = this.totsTableDefaultConfig.upperPaginator != undefined ? this.totsTableDefaultConfig.upperPaginator : false;
     this.lowerPaginator = this.totsTableDefaultConfig.lowerPaginator != undefined ? this.totsTableDefaultConfig.lowerPaginator : true;
     this.upperProgressBar = this.totsTableDefaultConfig.upperProgressBar != undefined ? this.totsTableDefaultConfig.upperProgressBar : false;

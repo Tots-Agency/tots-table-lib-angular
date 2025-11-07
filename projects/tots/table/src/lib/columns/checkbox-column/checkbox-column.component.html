@@ -1,3 +1,7 @@
 <div class="tots-checkbox-column">
-    <mat-checkbox [class]="this.column.extra?.class" [color]="this.column.extra?.color" (change)="onChange($event)" (click)="$event.stopPropagation();"></mat-checkbox>
+	<mat-checkbox
+		[ngClass]="[cssClass, color]"
+		(change)="onChange($event)"
+		(click)="$event.stopPropagation()"
+	></mat-checkbox>
 </div>

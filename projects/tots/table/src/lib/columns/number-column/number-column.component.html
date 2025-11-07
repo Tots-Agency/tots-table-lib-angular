@@ -1,8 +1,18 @@
 <span [ngClass]="{
-    'tots-number-column-positive': getItemValue() > 0,
-    'tots-number-column-negative': getItemValue() < 0
+	'tots-number-column-positive': getItemValue() > 0,
+	'tots-number-column-negative': getItemValue() < 0
 }">
-	<span class="tots-number-column-prepend" *ngIf="column.extra?.prepend">{{ column.extra?.prepend }}</span>
-    {{ getItemValue() | number:"1.0-2" }}
-	<span class="tots-number-column-append" *ngIf="column.extra?.append">{{ column.extra?.append }}</span>
+	@if (column.extra?.prepend) {
+		<span class="tots-number-column-prepend">
+			{{ column.extra?.prepend }}
+		</span>
+	}
+
+	{{ getItemValue() | number:"1.0-2" }}
+
+	@if (column.extra?.append) {
+		<span class="tots-number-column-append">
+			{{ column.extra?.append }}
+		</span>
+	}
 </span>

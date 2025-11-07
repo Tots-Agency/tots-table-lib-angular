@@ -6,7 +6,8 @@ import { TotsActionTable, TotsColumn, TotsTableComponent, TotsTableConfig } from
 @Component({
   selector: 'tots-table-full-group',
   templateUrl: './tots-table-full-group.component.html',
-  styleUrls: ['./tots-table-full-group.component.css']
+  styleUrls: ['./tots-table-full-group.component.css'],
+  standalone: false
 })
 export class TotsTableFullGroupComponent {
 

@@ -4,7 +4,8 @@ import { BalanceCurrencyColumnComponent } from '../balance-currency-column/balan
 @Component({
   selector: 'tots-balance-currency-icon-column',
   templateUrl: './balance-currency-icon-column.component.html',
-  styleUrls: ['./balance-currency-icon-column.component.css']
+  styleUrls: ['./balance-currency-icon-column.component.css'],
+  standalone: false
 })
 export class BalanceCurrencyIconColumnComponent extends BalanceCurrencyColumnComponent {
 

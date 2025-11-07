@@ -5,11 +5,12 @@ import moment from 'moment';
 @Component({
   selector: 'tots-date-column',
   templateUrl: './date-column.component.html',
-  styleUrls: ['./date-column.component.css']
+  styleUrls: ['./date-column.component.css'],
+  standalone: false
 })
 export class DateColumnComponent extends TotsBaseColumnComponent {
 
-  override getItemValue(): any {
+  override getItemValue() : string {
     let value = TotsTableHelper.getItemValueByKey(this.item, this.column.field_key);
 
     if(value == undefined || value == null || value == ''){

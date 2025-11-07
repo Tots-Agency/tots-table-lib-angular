@@ -26,7 +26,8 @@ import { delay, of } from 'rxjs';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
+  standalone: false
 })
 export class TableComponent implements OnInit {
 
@@ -54,8 +55,8 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     //this.legacyConfig();
-    //this.configThroughFactories();
-    this.miniConfig();
+    this.configThroughFactories();
+    //this.miniConfig();
   }
 
   onOrder(column: TotsColumn) {
@@ -145,9 +146,6 @@ export class TableComponent implements OnInit {
         new TotsStatusIconColumnOption(0, "clear", "red"),
       ], "Activo2"),
       new TotsDateColumn("date", "date", "Fecha", "YYYY-MM-DD", 'MM/DD/YYYY'),
-      new TotsInputColumn("title", "title", [
-        new TotsValidator(Validators.required, "required", "Requerido"),
-      ], "Title input", undefined, "Ingrese un título"),
       new TotsInputColumn("edit_field", "edit_field", [
         new TotsValidator(Validators.required, "required", "Requerido"),
         new TotsValidator(Validators.min(0.0000001), "min", "Debe ser positivo"),

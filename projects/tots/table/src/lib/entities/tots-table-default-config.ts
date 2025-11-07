@@ -1,5 +1,4 @@
 import { Injectable, InjectionToken } from "@angular/core";
-import { ThemePalette } from "@angular/material/core";
 
 export const TOTS_TABLE_DEFAULT_CONFIG = new InjectionToken<TotsTableDefaultConfig>('tots_table_default_config');
 
@@ -16,9 +15,9 @@ export class TotsTableDefaultConfig {
   loadingComponent? : any;
 
   /**
-   * Applies to the default initial loading spinner and to the upper and/or lower progress bars
+   * Color class applied to the default initial loading spinner and to the upper and/or lower progress bars. Ex color directive
    */
-  matColor? : ThemePalette;
+  matColor? : string;
 
   /**
    * @default false

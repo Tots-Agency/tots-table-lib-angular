@@ -3,9 +3,10 @@ import { TotsBaseColumnComponent } from '../tots-base-column.component';
 import { TotsTableHelper } from '../../helpers/tots-table-helper';
 
 @Component({
-  selector: 'tots-string-column',
-  templateUrl: './string-column.component.html',
-  styleUrls: ['./string-column.component.css']
+	selector: 'tots-string-column',
+	templateUrl: './string-column.component.html',
+	styleUrls: ['./string-column.component.css'],
+	standalone: false
 })
 export class StringColumnComponent extends TotsBaseColumnComponent {
 
@@ -19,7 +20,10 @@ export class StringColumnComponent extends TotsBaseColumnComponent {
     return value;
   }
 
-  protected get prepend() : string|undefined {
-    return this.column.extra?.prepend;
-  }
+	protected get prepend() : string | undefined {
+		return this.column.extra?.prepend;
+	}
+	protected get append() : string | undefined {
+		return this.column.extra?.append;
+	}
 }

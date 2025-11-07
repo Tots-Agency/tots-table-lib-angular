@@ -9,7 +9,8 @@ import { TotsTableComponent } from '../tots-table/tots-table.component';
 @Component({
   selector: 'tots-table-api',
   templateUrl: './tots-table-api.component.html',
-  styleUrls: ['./tots-table-api.component.scss']
+  styleUrls: ['./tots-table-api.component.scss'],
+  standalone: false
 })
 export class TotsTableApiComponent implements OnInit {
   

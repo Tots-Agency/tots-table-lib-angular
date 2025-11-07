@@ -5,7 +5,8 @@ import { TotsTableHelper } from '../../helpers/tots-table-helper';
 @Component({
   selector: 'tots-balance-currency-column',
   templateUrl: './balance-currency-column.component.html',
-  styleUrls: ['./balance-currency-column.component.css']
+  styleUrls: ['./balance-currency-column.component.css'],
+  standalone: false
 })
 export class BalanceCurrencyColumnComponent extends TotsBaseColumnComponent {
 

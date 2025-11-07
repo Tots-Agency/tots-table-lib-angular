@@ -5,7 +5,8 @@ import { TotsTableHelper } from '../../helpers/tots-table-helper';
 @Component({
   selector: 'tots-status-icon-column',
   templateUrl: './status-icon-column.component.html',
-  styleUrls: ['./status-icon-column.component.css']
+  styleUrls: ['./status-icon-column.component.css'],
+  standalone: false
 })
 export class StatusIconColumnComponent extends OptionColumnComponent {
 

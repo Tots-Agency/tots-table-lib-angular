@@ -6,7 +6,8 @@ import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
 @Component({
   selector: 'tots-select-column',
   templateUrl: './select-column.component.html',
-  styleUrls: ['./select-column.component.css']
+  styleUrls: ['./select-column.component.css'],
+  standalone: false
 })
 export class SelectColumnComponent extends TotsBaseColumnComponent {
 

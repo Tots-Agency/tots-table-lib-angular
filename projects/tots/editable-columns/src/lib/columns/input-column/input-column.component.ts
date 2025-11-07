@@ -6,7 +6,8 @@ import { TotsBaseColumnComponent, TotsTableHelper } from '@tots/table';
 @Component({
   selector: 'tots-input-column',
   templateUrl: './input-column.component.html',
-  styleUrls: ['./input-column.component.css']
+  styleUrls: ['./input-column.component.css'],
+  standalone: false
 })
 export class InputColumnComponent extends TotsBaseColumnComponent implements OnDestroy {
 

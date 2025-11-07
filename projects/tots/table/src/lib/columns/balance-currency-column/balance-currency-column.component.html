@@ -1,1 +1,6 @@
-<span [ngClass]="{'tots-balance-column-positive': getBalance() > 0, 'tots-balance-column-negative': getBalance() < 0}">{{getBalance()|currency}}</span>
+<span [ngClass]="{
+	'tots-balance-column-positive': getBalance() > 0,
+	'tots-balance-column-negative': getBalance() < 0
+}">
+	{{ getBalance() | currency }}
+</span>
