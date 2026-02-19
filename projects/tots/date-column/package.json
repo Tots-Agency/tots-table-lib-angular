@@ -1,6 +1,6 @@
 {
   "name": "@tots/date-column",
-  "version": "20.0.0",
+  "version": "20.0.1",
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0",
